@@ -14,27 +14,44 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
-public class EndUser implements UserDetails {
+public class User implements UserDetails {
 	private static final long serialVersionUID = 1L;
 	
+	public enum Role { UNKNOWN, ADMIN, END_USER };
+	
 	@Id
-	private final long userid;
+	private long id;
 	@Column
 	private String username;
 	@Column
 	private String password;
+	@Column
+	private int role;
+	
 	@Transient
-	Set<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
+	private Set<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
+	
+	public User() {}
+	
+	public static User createEndUser(String username, String password) {
+		return new User(username, password, Role.END_USER.ordinal());
+	}
 
-	public EndUser(long userid, String username, String password) {
-		authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-		this.userid = userid;
+	private User(String username, String password, int role) {
 		this.username = username;
 		this.password = password;
+		this.role = role;
+		switch(Role.values()[role]) {
+		case END_USER: 
+			authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+			break;
+		default:
+			break;
+		}
 	}
 
 	public long getUserid() {
-		return userid;
+		return id;
 	}
 
 	@Override
@@ -72,8 +89,12 @@ public class EndUser implements UserDetails {
 		return true;
 	}
 	
+	public Role getRole() {
+		return Role.values()[role];
+	}
+	
 	@Override
 	public String toString() {
-		return "{" + userid + " : " + username +"}";
+		return "{" + id + " : " + username +"}";
 	}
 }

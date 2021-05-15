@@ -1,10 +1,7 @@
 package org.gsef.eventfinder.security;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.gsef.eventfinder.jpa.model.EndUser;
-import org.gsef.eventfinder.jpa.service.EndUsers;
+import org.gsef.eventfinder.jpa.model.User;
+import org.gsef.eventfinder.service.UserService;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -14,22 +11,20 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class CustomUserDetailService implements UserDetailsService {
 
 	PasswordEncoder encoder;
-	EndUsers endUsersRepo;
+	UserService userService;
 
-	public CustomUserDetailService(EndUsers endUsersRepo) {
+	public CustomUserDetailService(UserService userService) {
 		encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-		this.endUsersRepo = endUsersRepo;
+		this.userService = userService;
+		//endUsersRepo.save(new EndUser(1, "test", "password"));
 	}
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		List<EndUser> users = new ArrayList<>();
-		endUsersRepo.findAll().forEach(users::add);
-		System.out.println(users);
-		EndUser user = endUsersRepo.findByUsername(username);
+		User user = userService.findByUserName(username);
 		System.out.println("Load User " + user);
 		if (user == null)
 			throw new UsernameNotFoundException("Wrong username or password");
-		return new EndUser(user.getUserid(), user.getUsername(), user.getPassword());
+		return user;
 	}
 }

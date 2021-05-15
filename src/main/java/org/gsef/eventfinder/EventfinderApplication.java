@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@EnableJpaRepositories("org.gsef.eventfinder.jpa.service")
+@EnableJpaRepositories("org.gsef.eventfinder.jpa.repo")
 @EntityScan("org.gsef.eventfinder.jpa.model")
 @SpringBootApplication
 public class EventfinderApplication {
