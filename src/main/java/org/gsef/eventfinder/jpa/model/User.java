@@ -7,6 +7,8 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Transient;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -14,6 +16,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class User implements UserDetails {
 	private static final long serialVersionUID = 1L;
 	
@@ -33,11 +36,11 @@ public class User implements UserDetails {
 	
 	public User() {}
 	
-	public static User createEndUser(String username, String password) {
+	protected static User createEndUser(String username, String password) {
 		return new User(username, password, Role.END_USER.ordinal());
 	}
 
-	private User(String username, String password, int role) {
+	protected User(String username, String password, int role) {
 		this.username = username;
 		this.password = password;
 		this.role = role;

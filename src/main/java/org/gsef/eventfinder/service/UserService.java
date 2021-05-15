@@ -1,5 +1,6 @@
 package org.gsef.eventfinder.service;
 
+import org.gsef.eventfinder.jpa.model.GSUser;
 import org.gsef.eventfinder.jpa.model.User;
 import org.gsef.eventfinder.jpa.repo.EndUserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ public class UserService {
 		return endUsersRepo.findByUsername(username);
 	}
 	
-	public User registerNewUser(String username, String password) {
-		return endUsersRepo.save(User.createEndUser(username, password));
+	public User registerNewGSUser(String username, String password) {
+		return endUsersRepo.save(GSUser.create(username, password, "000000", 0));
 	}
 }

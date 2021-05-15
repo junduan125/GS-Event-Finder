@@ -31,7 +31,13 @@ public class AccountController {
 	public String getRegistration(
 			@Param(value = "username") String username,
 			@Param(value = "password") String password) {
-		userService.registerNewUser(username, password);
+		userService.registerNewGSUser(username, password);
+		return "WelcomePage";
+	}
+	
+	@GetMapping("/loadTest")
+	public String debugTestData() {
+		userService.registerNewGSUser("test", "{noop}password");
 		return "WelcomePage";
 	}
 }
