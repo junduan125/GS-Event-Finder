@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Transient;
@@ -18,10 +19,10 @@ public class EndUser implements UserDetails {
 	
 	@Id
 	private final long userid;
-	
+	@Column
 	private String username;
+	@Column
 	private String password;
-	
 	@Transient
 	Set<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
 

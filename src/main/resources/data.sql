@@ -1,9 +1,9 @@
-DROP TABLE Users
+DROP TABLE IF EXISTS EndUser;
 
-CREATE TABLE Users (
+CREATE TABLE EndUser (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	username VARCHAR(255) NOT NULL,
-	password VARCHAR(255) NOT NULL,
-)
+	password VARCHAR(255) NOT NULL
+);
 
-INSERT INTO Users (username, password) VALUES ('test', '{noop}password');
+INSERT INTO EndUser (username, password) VALUES ('test', '{noop}password');

@@ -1,5 +1,6 @@
 package org.gsef.eventfinder.configs;
 
+import org.gsef.eventfinder.jpa.service.EndUsers;
 import org.gsef.eventfinder.security.CustomUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -11,10 +12,13 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 @EnableWebSecurity
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
+	
+	@Autowired
+	EndUsers endUsersRepo;
 
 	@Autowired
 	public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(new CustomUserDetailService());
+		auth.userDetailsService(new CustomUserDetailService(endUsersRepo));
 	}
 
 	@Override
