@@ -1,5 +1,6 @@
 package org.gsef.eventfinder.service;
 
+import org.gsef.eventfinder.exception.UserExistsException;
 import org.gsef.eventfinder.jpa.model.GSUser;
 import org.gsef.eventfinder.jpa.model.User;
 import org.gsef.eventfinder.jpa.repo.EndUserRepo;
@@ -16,7 +17,9 @@ public class UserService {
 		return endUsersRepo.findByUsername(username);
 	}
 	
-	public User registerNewGSUser(String username, String password) {
+	public User registerNewGSUser(String username, String password) throws UserExistsException {
+		User user = endUsersRepo.findByUsername(username);
+		if (user == null) throw new UserExistsException(username);
 		return endUsersRepo.save(GSUser.create(username, password, "000000", 0));
 	}
 }

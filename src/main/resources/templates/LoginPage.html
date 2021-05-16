@@ -2,14 +2,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Login</title>
 <header>
-	<script type="text/javascript" src="../lib/angular.min.js"></script>
-	<script type="text/javascript" src="scripts/controller/loginController.js"></script>
 </header>
 <body>
     <fieldset>
         <legend>Please Login</legend>
 		<form name="loginForm" th:action="@{/login}" method="POST">
-			<div>${ errorMessage }</div>
+			<span th:text="${errorMessage}" />
 	        <label for="username">Username</label>
 	        <input type="text" id="username" name="username"/>
 	        <label for="password">Password</label>
