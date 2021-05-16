@@ -1,5 +1,8 @@
 DROP TABLE IF EXISTS GSUser;
 DROP TABLE IF EXISTS User;
+DROP TABLE IF EXISTS UserCharacter;
+DROP TABLE IF EXISTS GSEvent;
+DROP TABLE IF EXISTS GSEventUsers;
 
 CREATE TABLE User (
 	id INT AUTO_INCREMENT PRIMARY KEY,
@@ -14,4 +17,26 @@ CREATE TABLE GSUser (
 	uuid VARCHAR(10) NOT NULL,
 	world_level int,
 	FOREIGN KEY (userid) REFERENCES User(id)
+);
+
+CREATE TABLE UserCharacter (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	user_id INT NOT NULL,
+	level INT,
+	character_type INT,
+	FOREIGN KEY (user_id) REFERENCES User(id)
+);
+
+CREATE TABLE GSEvent (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	event_time TIMESTAMP,
+	event_type INT NOT NULL
+);
+
+CREATE TABLE GSEventUsers (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	event_id INT NOT NULL,
+	user_id INT NOT NULL,
+	FOREIGN KEY (event_id) REFERENCES GSEvent(id),
+	FOREIGN KEY (user_id) REFERENCES User(id)
 );

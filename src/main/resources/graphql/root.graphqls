@@ -1,7 +1,29 @@
 type Query {
     profile: GSUser
+    characters: [UserCharacter]
+    events: [Event]
 }
 
 type Mutation {
-	noop: Int!
+	addUserCharacter(characterType: Int!, level: Int): GSUser
+	editUserCharacter(id: long, characterType: Int): GSUser
+	removeUserCharacter(id: long): GSUser
+	
+	createEvent(eventTime: Long): GSEvent
+	joinEvent(id: Long): GSEvent
+	leaveEvent(id: Long): Boolean
+	
+	rateUser(id: Long, overall: Int, griefed: Boolean, flaked: Boolean): boolean
+}
+
+type GSUser {
+	username: String!
+}
+
+type UserCharacter {
+	level: Int
+}
+
+type GSEvent {
+	eventTime: Long
 }

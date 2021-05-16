@@ -1,4 +1,0 @@
-type GSUser {
-	id: String!
-	username: String!
-}
