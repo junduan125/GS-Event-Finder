@@ -1,0 +1,7 @@
+type Query {
+    profile: GSUser
+}
+
+type Mutation {
+	noop: Int!
+}
