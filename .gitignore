@@ -32,3 +32,12 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### NodeJS ###
+src/main/resources/webapp/react/build/
+src/main/resources/webapp/react/node/
+src/main/resources/webapp/react/node_modules/
+src/main/resources/webapp/react/config/
+src/main/resources/webapp/react/scripts/
+src/main/resources/webapp/react/src/page/__generated__/
+src/main/resources/webapp/react/package-lock.json
