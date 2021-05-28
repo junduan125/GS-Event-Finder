@@ -16,7 +16,7 @@ public class UserService {
 	@Autowired
 	EndUserRepo endUsersRepo;
 
-	public User findByUserName(String username) {
+	public GSUser findByUserName(String username) {
 		return endUsersRepo.findByUsername(username);
 	}
 

@@ -4,6 +4,15 @@ import RegisterForm from "./RegisterForm";
 
 function LoginForm({params}) {
 	const [csrfToken] = useCookies(['X-XSRF-TOKEN']);
+	const data = {
+		username: 'test',
+		password: 'password'
+	}
+	fetch('/login', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)})
+	.then(response => {
+		console.log('response', response)
+	});
+
 	return (
 	    <fieldset>
 	        <legend>Please Login</legend>

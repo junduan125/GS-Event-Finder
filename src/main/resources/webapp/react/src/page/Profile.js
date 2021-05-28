@@ -19,7 +19,7 @@ const profileQuery = graphql`
 
 const profileQueryRef = loadQuery(
   RelayEnvironment,
-  profileQuery
+  profileQuery,{}
 );
 
 function Profile(props) {

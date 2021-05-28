@@ -22,6 +22,7 @@ public class AccountController {
 		return "LoginPage";
 	}
 
+	
 	@PostMapping(path="/register", consumes = "application/json", produces = "application/json")
 	public String getRegistration(@RequestBody NewGSUser registeredUser) {
 		try {
