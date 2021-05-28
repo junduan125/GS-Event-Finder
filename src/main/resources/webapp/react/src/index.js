@@ -6,7 +6,6 @@ import {
 	  Route
 	} from "react-router-dom";
 import Home from './page/Home';
-import Login from './page/Login';
 import Profile from './page/Profile';
 
 
@@ -15,9 +14,8 @@ function App() {
 	return(
   		<Router>
 			<Switch>
-				<Route path="/signin" component={() => <Login params={params} />} />
 				<Route path="/user/profile" component={() => <Profile params={params} />} />
-				<Route path="/" component={Home} />
+				<Route path="/" component={() => <Home params={params} />} />
 			</Switch>
   		</Router>
 	);

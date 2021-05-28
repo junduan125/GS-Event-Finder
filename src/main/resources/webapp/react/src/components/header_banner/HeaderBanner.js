@@ -1,8 +1,7 @@
 import React from 'react';
-import {
-  Link
-} from "react-router-dom";
+import { Link } from "react-router-dom";
 import {useState} from 'react';
+import LoginForm from '../login/LoginForm'
 import './HeaderBanner.css';
 
 const NAV_LINKS = {
@@ -11,8 +10,9 @@ const NAV_LINKS = {
 	EVENTS: 'selected_nav_events',
 }
 
-function HeaderBanner() {
+function HeaderBanner(params) {
 	const [selectedNavClass, setSelectedNavClass] = useState(NAV_LINKS.HOME);
+	const [showSignin, setShowSignin] = useState(false);
 
 	const onSelectNavLink = (selected_link) => {
 		setSelectedNavClass(selected_link);
@@ -25,13 +25,19 @@ function HeaderBanner() {
 			</div>
 			<div className="header_nav">
 				<div id="navSelector" className={'nav_selector ' + selectedNavClass} />
-				<Link className="nav_link selected_nav_link" to="/" onMouseEnter={() => onSelectNavLink(NAV_LINKS.HOME)}>HOME</Link>
-				<Link className="nav_link" to="/user/profile" onMouseEnter={() => onSelectNavLink(NAV_LINKS.PROFILE)}>PROFILE</Link>
-				<Link className="nav_link" to="/user/events" onMouseEnter={() => onSelectNavLink(NAV_LINKS.EVENTS)}>EVENTS</Link>
+				<Link className="nav_link selected_nav_link" to="/" 
+					onMouseEnter={() => onSelectNavLink(NAV_LINKS.HOME)}>HOME</Link>
+				<Link className="nav_link" to="/user/profile" 
+					onMouseEnter={() => onSelectNavLink(NAV_LINKS.PROFILE)}
+					onMouseLeave={() => onSelectNavLink(NAV_LINKS.HOME)}>PROFILE</Link>
+				<Link className="nav_link" to="/user/events" 
+					onMouseEnter={() => onSelectNavLink(NAV_LINKS.EVENTS)}
+					onMouseLeave={() => onSelectNavLink(NAV_LINKS.HOME)}>EVENTS</Link>
 			</div>
 			<div className="header_signin">
-				<Link to="/signin">Sign in</Link>
+				<span to="/signin" onClick={() => setShowSignin(!showSignin)}>Sign in</span>
 			</div>
+			{showSignin && <LoginForm {...params} />}
 		</div>
 	);
 }

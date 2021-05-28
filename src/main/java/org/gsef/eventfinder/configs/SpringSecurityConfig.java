@@ -41,7 +41,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 				.formLogin().loginProcessingUrl("/login")
 				.usernameParameter("username").passwordParameter("password")
 				.failureForwardUrl(loginFailureUrl)
-				.defaultSuccessUrl(loginSuccessUrl)
+				.successForwardUrl(loginSuccessUrl)
 			.and().cors().and().csrf().disable();
 		//@formatter:on
 	}

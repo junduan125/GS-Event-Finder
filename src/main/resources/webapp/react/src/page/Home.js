@@ -1,9 +1,9 @@
 import React from 'react';
 import Container from '../components/container/Container';
 
-function Home() {
+function Home(props) {
 	return (
-		<Container>
+		<Container {...props} >
 			<div />
 		</Container>
 	);

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
 
 function RegisterForm() {
 
@@ -17,7 +16,7 @@ function RegisterForm() {
 	}
 
 	return (
-		<Button variant="success" onClick={loadData}>Register</Button>
+		<button onClick={loadData}>Register</button>
 	);
 }
 
