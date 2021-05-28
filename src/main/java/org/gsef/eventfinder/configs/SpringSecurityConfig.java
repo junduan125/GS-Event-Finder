@@ -5,7 +5,6 @@ import org.gsef.eventfinder.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -36,14 +35,13 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 		//@formatter:off
 		http.authorizeRequests()
 			.antMatchers("/").permitAll()
+			.antMatchers("user/*").hasRole("USER")
 			.antMatchers("/graphql").authenticated()
 			.and()
 				.formLogin().loginProcessingUrl("/login")
 				.usernameParameter("username").passwordParameter("password")
 				.failureForwardUrl(loginFailureUrl)
-				.successHandler((req, resp, auth) -> {
-					resp.setStatus(200);
-				})
+				.defaultSuccessUrl(loginSuccessUrl)
 			.and().cors().and().csrf().disable();
 		//@formatter:on
 	}

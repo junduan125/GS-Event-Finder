@@ -1,0 +1,21 @@
+.footer {
+	position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 999;
+    width: 100%;
+    min-width: 1280px;
+    padding-top: 0.1em;
+    height: 1.5em;
+    background-color: rgba(17,17,17,0.75);
+    box-shadow: 0 3px 7px 0 rgb(0 0 0 / 35%);
+}
+
+.footer_text {
+	position: fixed;
+	left: 0;
+	right: 0;
+	color: white;
+	margin: auto;
+	text-align: center;
+}

@@ -16,7 +16,7 @@ function App() {
   		<Router>
 			<Switch>
 				<Route path="/signin" component={() => <Login params={params} />} />
-				<Route path="/profile" component={() => <Profile params={params} />} />
+				<Route path="/user/profile" component={() => <Profile params={params} />} />
 				<Route path="/" component={Home} />
 			</Switch>
   		</Router>

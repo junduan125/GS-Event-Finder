@@ -1,13 +1,11 @@
 import React from 'react';
-import {
-  Link
-} from "react-router-dom";
+import Container from '../components/container/Container';
 
 function Home() {
 	return (
-		<div >
-			<Link to="/signin">Sign in</Link>
-		</div>
+		<Container>
+			<div />
+		</Container>
 	);
 }
 
