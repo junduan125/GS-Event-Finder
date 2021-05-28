@@ -5,7 +5,7 @@ import { useCookies } from "react-cookie";
 import RegisterForm from "./RegisterForm";
 import './Login.css';
 
-function LoginForm({params}) {
+function LoginForm({params, onHide}) {
 	const [showRegister, setShowRegister] = useState(false);
 	const [csrfToken] = useCookies(['X-XSRF-TOKEN']);
 
@@ -13,6 +13,7 @@ function LoginForm({params}) {
 		<div>
 			{ !showRegister &&
 			<div className="login_container float_out">
+				<div className="close_button" onClick={onHide}>x</div>
 				<div className="login_disclaimer">
 					<p>This site is not affliated with miHoyo and Genshin, login information is not tied to miHoyo in any way</p>
 				</div>

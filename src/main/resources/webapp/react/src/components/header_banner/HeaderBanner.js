@@ -37,7 +37,7 @@ function HeaderBanner(params) {
 			<div className="header_signin">
 				<span to="/signin" onClick={() => setShowSignin(!showSignin)}>Sign in</span>
 			</div>
-			{showSignin && <LoginForm {...params} />}
+			{showSignin && <LoginForm {...params} onHide={() => {setShowSignin(false)}} />}
 		</div>
 	);
 }
