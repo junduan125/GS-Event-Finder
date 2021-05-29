@@ -7,6 +7,7 @@ import {
 	} from "react-router-dom";
 import Home from './page/Home';
 import Profile from './page/Profile';
+import Events from './page/Events';
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
   		<Router>
 			<Switch>
 				<Route path="/user/profile" component={() => <Profile params={params} />} />
+				<Route path="/user/events" component={() => <Events params={params} />} />
 				<Route path="/" component={() => <Home params={params} />} />
 			</Switch>
   		</Router>

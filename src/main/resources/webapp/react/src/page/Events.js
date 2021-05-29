@@ -5,24 +5,29 @@ import RelayEnvironment from '../RelayEnvironment';
 import Container from '../components/container/Container';
 import { NAV_LINKS } from '../components/header_banner/HeaderBanner';
 
-const profileQuery = graphql`
+const eventQuery = graphql`
 	query ProfileQuery {
 		profile {
 			username
+		}
+		events {
+			eventTime
 		}
 	}
 `;
 
 const profileQueryRef = loadQuery(
   RelayEnvironment,
-  profileQuery,{}
+  eventQuery,{}
 );
 
-function Profile(props) {
+
+function Events(props) {
 	return (
-		<Container {...props} currentNav={NAV_LINKS.PROFILE} >
+		<Container {...props} currentNav={NAV_LINKS.EVENTS} >
+			<div />
 		</Container>
 	);
 }
 
-export default Profile
+export default Events

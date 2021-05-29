@@ -4,14 +4,14 @@ import {useState} from 'react';
 import LoginForm from '../login/LoginForm'
 import './HeaderBanner.css';
 
-const NAV_LINKS = {
+export const NAV_LINKS = {
 	HOME: 'selected_nav_home',
 	PROFILE: 'selected_nav_profile',
 	EVENTS: 'selected_nav_events',
 }
 
-function HeaderBanner(params) {
-	const [selectedNavClass, setSelectedNavClass] = useState(NAV_LINKS.HOME);
+function HeaderBanner(props) {
+	const [selectedNavClass, setSelectedNavClass] = useState(props.currentNav);
 	const [showSignin, setShowSignin] = useState(false);
 
 	const onSelectNavLink = (selected_link) => {
@@ -26,18 +26,19 @@ function HeaderBanner(params) {
 			<div className="header_nav">
 				<div id="navSelector" className={'nav_selector ' + selectedNavClass} />
 				<Link className="nav_link selected_nav_link" to="/" 
-					onMouseEnter={() => onSelectNavLink(NAV_LINKS.HOME)}>HOME</Link>
+					onMouseEnter={() => onSelectNavLink(NAV_LINKS.HOME)}
+					onMouseLeave={() => onSelectNavLink(props.currentNav)}>HOME</Link>
 				<Link className="nav_link" to="/user/profile" 
 					onMouseEnter={() => onSelectNavLink(NAV_LINKS.PROFILE)}
-					onMouseLeave={() => onSelectNavLink(NAV_LINKS.HOME)}>PROFILE</Link>
+					onMouseLeave={() => onSelectNavLink(props.currentNav)}>PROFILE</Link>
 				<Link className="nav_link" to="/user/events" 
 					onMouseEnter={() => onSelectNavLink(NAV_LINKS.EVENTS)}
-					onMouseLeave={() => onSelectNavLink(NAV_LINKS.HOME)}>EVENTS</Link>
+					onMouseLeave={() => onSelectNavLink(props.currentNav)}>EVENTS</Link>
 			</div>
 			<div className="header_signin">
 				<span to="/signin" onClick={() => setShowSignin(!showSignin)}>Sign in</span>
 			</div>
-			{showSignin && <LoginForm {...params} onHide={() => {setShowSignin(false)}} />}
+			{showSignin && <LoginForm {...props} onHide={() => {setShowSignin(false)}} />}
 		</div>
 	);
 }

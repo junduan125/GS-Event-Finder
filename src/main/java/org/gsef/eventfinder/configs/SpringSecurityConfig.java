@@ -35,7 +35,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 		//@formatter:off
 		http.authorizeRequests()
 			.antMatchers("/").permitAll()
-			.antMatchers("user/*").hasRole("USER")
+			.antMatchers("/user/*").hasRole("USER")
 			.antMatchers("/graphql").authenticated()
 			.and()
 				.formLogin().loginProcessingUrl("/login")

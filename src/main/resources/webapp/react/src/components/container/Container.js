@@ -16,7 +16,7 @@ function Container(props) {
 		<RelayEnvironmentProvider environment={RelayEnvironment}>
 			<React.Suspense fallback={'Loading...'}>
 				<div>
-					<HeaderBanner />
+					<HeaderBanner currentNav={props.currentNav} />
 					<video className="background_video" autoplay="autoplay" muted loop >
 						<source src="/assets/genshin_background_vid.mp4" type="video/mp4" />
 					</video>
