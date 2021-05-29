@@ -1,13 +1,8 @@
 import React from 'react';
 import {graphql} from 'react-relay';
-import {
-  RelayEnvironmentProvider,
-  loadQuery,
-  usePreloadedQuery,
-} from 'react-relay/hooks';
+import { loadQuery } from 'react-relay/hooks';
 import RelayEnvironment from '../RelayEnvironment';
-
-const { Suspense } = React;
+import Container from '../components/container/Container';
 
 const profileQuery = graphql`
 	query ProfileQuery {
@@ -24,11 +19,8 @@ const profileQueryRef = loadQuery(
 
 function Profile(props) {
 	return (
-		<RelayEnvironmentProvider environment={RelayEnvironment}>
-			<React.Suspense fallback={'Loading...'}>
-			<div />
-		</React.Suspense>
-		</RelayEnvironmentProvider>
+		<Container {...props}>
+		</Container>
 	);
 }
 
