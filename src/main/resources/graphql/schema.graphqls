@@ -5,5 +5,5 @@ type Query {
 }
 
 type Mutation {
-	rateUser(id: Long, overall: Int, griefed: Boolean, flaked: Boolean): Boolean
+	rateUser(id: ID, overall: Int, griefed: Boolean, flaked: Boolean): Boolean
 }

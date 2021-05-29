@@ -6,12 +6,13 @@ import Container from '../components/container/Container';
 import { NAV_LINKS } from '../components/header_banner/HeaderBanner';
 
 const eventQuery = graphql`
-	query ProfileQuery {
+	query EventsQuery {
 		profile {
 			username
 		}
 		events {
 			eventTime
+			eventType
 		}
 	}
 `;
