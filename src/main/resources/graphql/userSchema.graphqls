@@ -1,7 +1,7 @@
 extend type Mutation {
 	addUserCharacter(characterType: Int!, level: Int): GSUser
-	editUserCharacter(id: ID, characterType: Int): GSUser
-	removeUserCharacter(id: ID): GSUser
+	editUserCharacter(characterType: Int, level: Int): GSUser
+	removeUserCharacter(characterType: Int): GSUser
 }
 
 type GSUser {

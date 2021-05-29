@@ -24,7 +24,7 @@ CREATE TABLE UserCharacter (
 	user_id INT NOT NULL,
 	level INT,
 	character_type INT,
-	FOREIGN KEY (user_id) REFERENCES User(id)
+	FOREIGN KEY (user_id) REFERENCES GSUser(id)
 );
 
 CREATE TABLE GSEvent (

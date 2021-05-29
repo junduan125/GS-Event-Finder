@@ -8,7 +8,7 @@ import org.gsef.eventfinder.jpa.model.GSEvent;
 import org.gsef.eventfinder.jpa.model.GSEvent.GSEventType;
 import org.gsef.eventfinder.jpa.model.GSEventUser;
 import org.gsef.eventfinder.jpa.model.GSUser;
-import org.gsef.eventfinder.jpa.repo.EventRepo;
+import org.gsef.eventfinder.jpa.repo.GSEventRepo;
 import org.gsef.eventfinder.jpa.repo.GSEventUserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +19,7 @@ public class EventService {
 	private static int MAX_USER_PER_EVENT = 4;
 	
 	@Autowired
-	EventRepo eventRepo;
+	GSEventRepo eventRepo;
 	
 	@Autowired
 	GSEventUserRepo gsEventUserRepo;
@@ -40,9 +40,8 @@ public class EventService {
 	
 	public Boolean leaveEvent(Long id, GSUser user) {
 		GSEvent event = eventRepo.findById(id).get();
-		event.getEventUsers().remove(user);
-		eventRepo.save(event);
+		GSEventUser gsEventUser = gsEventUserRepo.findByUserAndEvent(user, event);
+		gsEventUserRepo.delete(gsEventUser);
 		return false;
 	}
-
 }

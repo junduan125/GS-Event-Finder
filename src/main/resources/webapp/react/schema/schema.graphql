@@ -6,8 +6,8 @@ type Query {
 
 type Mutation {
 	addUserCharacter(characterType: Int!, level: Int): GSUser
-	editUserCharacter(id: ID, characterType: Int): GSUser
-	removeUserCharacter(id: Long): GSUser
+	editUserCharacter(characterType: Int, level: Int): GSUser
+	removeUserCharacter(characterType: Int): GSUser
 	
 	createEvent(eventTime: Int, eventType: Int): GSEvent
 	joinEvent(id: ID): GSEvent

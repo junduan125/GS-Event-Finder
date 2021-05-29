@@ -1,5 +1,6 @@
 package org.gsef.eventfinder.jpa.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 
@@ -8,7 +9,7 @@ public class GSEventUser extends BaseEntity {
 
 	@OneToOne
 	private GSEvent event;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.DETACH)
 	private GSUser user;
 	
 	public GSEventUser() {}
