@@ -4,7 +4,7 @@
 	top: 66px;
 	background-color: #fff;
 	width: 370px;
-	height: 250px;
+	height: 280px;
     border-radius: 0px 0px 0px 4px;
     padding: 20px 40px;
     box-shadow: 0 3px 7px 0 rgb(0 0 0 / 35%);
@@ -25,6 +25,12 @@
 
 .login_container input::placeholder {
 	color: #c8cccf;
+}
+
+.login_error {
+    color: red;
+    margin:  15px 15px;
+    font-size: 14px;
 }
 
 .login_button {

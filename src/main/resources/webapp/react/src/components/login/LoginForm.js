@@ -5,9 +5,40 @@ import { useCookies } from "react-cookie";
 import RegisterForm from "./RegisterForm";
 import './Login.css';
 
+const emptyUser = {username: '', password: ''};
+
+const convertObjectToURLEncoded = (formData) => {
+	let formBody = [];
+	for (let property in formData) {
+	  formBody.push(encodeURIComponent(property) + "=" + encodeURIComponent(formData[property]));
+	}
+	return formBody.join("&");
+}
+
 function LoginForm({params, onHide}) {
 	const [showRegister, setShowRegister] = useState(false);
+	const [user, setUser] = useState(emptyUser);
+	const [loginErrors, setLoginErrors] = useState(false);
+
 	const [csrfToken] = useCookies(['X-XSRF-TOKEN']);
+
+	const handleSubmit = (event) => {
+		event.preventDefault();
+		fetch('/login', {
+			method: 'POST',
+			body: convertObjectToURLEncoded(user),
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+		}).then( response => {
+			console.log(response);
+			setUser(emptyUser);
+			if (response.status === 200) {
+				onHide();
+				window.location.reload();
+			} else if (response.status === 201) {
+				setLoginErrors(true);
+			}
+		});
+	}
 
 	return (
 		<div>
@@ -17,11 +48,17 @@ function LoginForm({params, onHide}) {
 				<div className="login_disclaimer">
 					<p>This site is not affliated with miHoyo and Genshin, login information is not tied to miHoyo in any way</p>
 				</div>
-				<form name="loginForm" action="login" method="POST">
+				<div className="login_error">
+					{ loginErrors ? <span>Invalid Username/password</span> : <span/>}
+				</div>
+				<form name="loginForm" onSubmit={handleSubmit}>
 			        <div>
-			        	<input type="text" id="username" name="username" placeholder="Username" />
-			        	<input type="password" id="password" name="password" placeholder="Password" />
-		        		<input type="hidden" name="_csrf" value={csrfToken} />
+			        	<input type="text" placeholder="Username"
+			        		 name="username" value={user.username}
+			        		 onChange={e => setUser({ ...user, username: e.target.value})} />
+			        	<input type="password" placeholder="Password"
+			        		name="password" value={user.password}
+			        		onChange={e => setUser({ ...user, password: e.target.value})} />
 			        	<button className="login_button" type="submit">Log in</button>
 			        </div>
 				</form>
