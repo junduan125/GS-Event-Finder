@@ -12,7 +12,7 @@ import javax.persistence.TemporalType;
 @Entity
 public class GSEvent extends BaseEntity {
 	
-	public enum EventType {UNKNOWN, SOCIAL, MINING, MOB_HUNTING };
+	public enum GSEventType {UNKNOWN, SOCIAL, MINING, MOB_HUNTING };
 	
 	@Column
 	private int eventType;
@@ -20,12 +20,17 @@ public class GSEvent extends BaseEntity {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date eventTime;
 	@OneToMany
-	private List<GSUser> eventUsers;
+	private List<GSEventUser> eventUsers;
 	
 	public GSEvent() {}
 	
-	public GSEvent(long eventTime, EventType eventType) {
+	public GSEvent(Long eventTime, GSEventType eventType) {
 		this.eventTime = new Date(eventTime);
+		this.eventType = eventType.ordinal();
+	}
+	
+	public GSEvent(Date eventTime, GSEventType eventType) {
+		this.eventTime = eventTime;
 		this.eventType = eventType.ordinal();
 	}
 
@@ -44,5 +49,12 @@ public class GSEvent extends BaseEntity {
 	public void setEventTime(Date eventTime) {
 		this.eventTime = eventTime;
 	}
-	
+
+	public List<GSEventUser> getEventUsers() {
+		return eventUsers;
+	}
+
+	public void setEventUsers(List<GSEventUser> eventUsers) {
+		this.eventUsers = eventUsers;
+	}
 }

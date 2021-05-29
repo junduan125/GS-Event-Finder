@@ -14,4 +14,10 @@ public abstract class BaseEntity {
 	public Long getId() {
 		return id;
 	}
+	
+	@Override
+	public boolean equals(Object o) {
+		BaseEntity baseEntity = (BaseEntity) o;
+		return this.getId().equals(baseEntity.getId());
+	}
 }

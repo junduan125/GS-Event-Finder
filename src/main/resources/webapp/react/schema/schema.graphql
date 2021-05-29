@@ -9,12 +9,14 @@ type Mutation {
 	editUserCharacter(id: Long, characterType: Int): GSUser
 	removeUserCharacter(id: Long): GSUser
 	
-	createEvent(eventTime: Long): GSEvent
+	createEvent(eventTime: Long, eventType: Int): GSEvent
 	joinEvent(id: Long): GSEvent
 	leaveEvent(id: Long): Boolean
 	
 	rateUser(id: Long, overall: Int, griefed: Boolean, flaked: Boolean): Boolean
 }
+
+type 
 
 type GSUser {
 	username: String!

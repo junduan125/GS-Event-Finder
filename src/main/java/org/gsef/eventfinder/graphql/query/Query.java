@@ -7,13 +7,17 @@ import org.gsef.eventfinder.jpa.model.GSEvent;
 import org.gsef.eventfinder.jpa.model.GSUser;
 import org.gsef.eventfinder.jpa.model.UserCharacter;
 import org.gsef.eventfinder.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 
+@Component
 public class Query implements GraphQLQueryResolver  {
 	
+	@Autowired
 	private UserService userService;
 	
 	private static UserDetails getAuthenticatedUser() {
@@ -21,10 +25,6 @@ public class Query implements GraphQLQueryResolver  {
 	}
 	
 	public Query() {}
-	
-	public Query(UserService userService) {
-		this.userService = userService;
-	}
 
 	public GSUser getProfile() {
 		UserDetails user = getAuthenticatedUser();

@@ -1,0 +1,9 @@
+extend type Mutation {
+	createEvent(eventTime: Long, eventType: Int): GSEvent
+	joinEvent(id: Long): GSEvent
+	leaveEvent(id: Long): Boolean
+}
+
+type GSEvent {
+	eventTime: Long
+}

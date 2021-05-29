@@ -1,0 +1,13 @@
+extend type Mutation {
+	addUserCharacter(characterType: Int!, level: Int): GSUser
+	editUserCharacter(id: Long, characterType: Int): GSUser
+	removeUserCharacter(id: Long): GSUser
+}
+
+type GSUser {
+	username: String!
+}
+
+type UserCharacter {
+	level: Int
+}

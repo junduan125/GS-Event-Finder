@@ -33,10 +33,12 @@ CREATE TABLE GSEvent (
 	event_type INT NOT NULL
 );
 
-CREATE TABLE GSEventUsers (
+CREATE TABLE GSEventUser (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	event_id INT NOT NULL,
 	user_id INT NOT NULL,
+	selected_character INT NOT NULL,
 	FOREIGN KEY (event_id) REFERENCES GSEvent(id),
-	FOREIGN KEY (user_id) REFERENCES User(id)
+	FOREIGN KEY (user_id) REFERENCES GSUser(id),
+	FOREIGN KEY (selected_character) REFERENCES UserCharacter(id)
 );
