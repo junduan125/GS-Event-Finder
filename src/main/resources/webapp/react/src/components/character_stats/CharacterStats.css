@@ -1,0 +1,24 @@
+.character_container {
+	position: absolute;
+	left: 380px;
+	height: 500px;
+	padding: 10px;
+	width: 320px;
+    background-color: rgba(17,17,17,0.55);
+    box-shadow: 1px 1px 5px 1px #404040bf;
+}
+
+.character_portrait {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.character_portrait > img {
+	width: 200px;
+}
+
+.character_controls {
+	position: absolute;
+	bottom: 10px;
+	width: 100%;
+}

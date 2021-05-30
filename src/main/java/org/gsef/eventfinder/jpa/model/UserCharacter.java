@@ -3,7 +3,6 @@ package org.gsef.eventfinder.jpa.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 @Entity
 public class UserCharacter extends BaseEntity {
@@ -39,6 +38,14 @@ public class UserCharacter extends BaseEntity {
 
 	public CharacterType getCharacterType() {
 		return CharacterType.values()[characterType];
+	}
+	
+	public Integer getCharacterTypeID() {
+		return characterType;
+	}
+	
+	public void setCharacterTypeID(Integer characterType) {
+		this.characterType = characterType;
 	}
 
 	public UserCharacter setCharacterType(CharacterType characterType) {

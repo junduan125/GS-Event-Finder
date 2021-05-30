@@ -1,0 +1,35 @@
+{
+	"characters": [
+		{
+			"id": 1,
+			"name": "Albedo",
+			"stars": "5",
+			"elementType": "ANEMO"
+		}, {
+			"id": 2,
+			"name": "Amber",
+			"stars": "4",
+			"elementType": "ANEMO"
+		}, {
+			"id": 3,
+			"name": "Barbara",
+			"stars": "4",
+			"elementType": "ANEMO"
+		}, {
+			"id": 4,
+			"name": "Beidou",
+			"stars": "4",
+			"elementType": "ANEMO"
+		}, {
+			"id": 5,
+			"name": "Bennett",
+			"stars": "4",
+			"elementType": "ANEMO"
+		}, {
+			"id": 6,
+			"name": "Chongyun",
+			"stars": "4",
+			"elementType": "ANEMO"
+		}
+	]
+}

@@ -20,7 +20,7 @@ function Container(props) {
 					<video className="background_video" autoplay="autoplay" muted loop >
 						<source src="/assets/genshin_background_vid.mp4" type="video/mp4" />
 					</video>
-					<div>
+					<div className="container_content">
 						{props.children}
 					</div>
 					<Footer />

@@ -28,7 +28,7 @@
 }
 
 .login_error {
-    color: red;
+    color: #b70707;
     margin:  15px 15px;
     font-size: 14px;
 }

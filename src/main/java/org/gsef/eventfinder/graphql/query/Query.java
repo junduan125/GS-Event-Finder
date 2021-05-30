@@ -6,6 +6,7 @@ import java.util.List;
 import org.gsef.eventfinder.jpa.model.GSEvent;
 import org.gsef.eventfinder.jpa.model.GSUser;
 import org.gsef.eventfinder.jpa.model.UserCharacter;
+import org.gsef.eventfinder.service.UserProfileService;
 import org.gsef.eventfinder.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,6 +21,9 @@ public class Query implements GraphQLQueryResolver  {
 	@Autowired
 	private UserService userService;
 	
+	@Autowired
+	private UserProfileService userProfileService;
+	
 	private static UserDetails getAuthenticatedUser() {
 		return (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 	}
@@ -32,7 +36,8 @@ public class Query implements GraphQLQueryResolver  {
 	}
 	
 	public List<UserCharacter> getCharacters() {
-		return new ArrayList<>();
+		GSUser guser = userService.findByUserName(getAuthenticatedUser().getUsername());
+		return userProfileService.ownedCharacters(guser);
 	}
 	
 	public List<GSEvent> getEvents() {
