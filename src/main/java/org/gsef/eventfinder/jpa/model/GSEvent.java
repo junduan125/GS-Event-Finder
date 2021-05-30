@@ -5,15 +5,21 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class GSEvent extends BaseEntity {
+public class GSEvent {
 	
 	public enum GSEventType {UNKNOWN, SOCIAL, MINING, MOB_HUNTING };
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	protected long id;
 	@Column
 	private int eventType;
 	@Column
@@ -32,6 +38,10 @@ public class GSEvent extends BaseEntity {
 	public GSEvent(Date eventTime, GSEventType eventType) {
 		this.eventTime = eventTime;
 		this.eventType = eventType.ordinal();
+	}
+	
+	public Long getId() {
+		return id;
 	}
 
 	public int getEventType() {

@@ -2,13 +2,19 @@ package org.gsef.eventfinder.jpa.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class UserCharacter extends BaseEntity {
+public class UserCharacter {
 	
-	public enum CharacterType {UNKNOWN, TRAVELLER, AMBER };
+	public enum CharacterType {UNKNOWN, Albedo, Amber, Barbara, Beidou, Bennett, Chongyun};
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	protected long id;
 	@Column
 	private int level;
 	@Column
@@ -21,6 +27,10 @@ public class UserCharacter extends BaseEntity {
 	public UserCharacter(CharacterType characterType, int level) {
 		this.characterType = characterType.ordinal();
 		this.level = level;
+	}
+	
+	public Long getId() {
+		return id;
 	}
 
 	public void setCharacterType(int characterType) {

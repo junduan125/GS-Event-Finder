@@ -21,7 +21,7 @@ function HeaderBanner(props) {
 	return (
 		<div className="header">
 			<div className="header_logo">
-				<img src="/assets/genshin_impact_logo_no_outline.png" width="173" height="66" />
+				<img src="/assets/genshin_impact_logo_no_outline.png" alt="" width="173" height="66" />
 			</div>
 			<div className="header_nav">
 				<div id="navSelector" className={'nav_selector ' + selectedNavClass} />

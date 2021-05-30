@@ -37,6 +37,7 @@ public class Query implements GraphQLQueryResolver  {
 	
 	public List<UserCharacter> getCharacters() {
 		GSUser guser = userService.findByUserName(getAuthenticatedUser().getUsername());
+		System.out.println("getCharuser " + guser.getUsername() + " has id " + guser.getId());
 		return userProfileService.ownedCharacters(guser);
 	}
 	

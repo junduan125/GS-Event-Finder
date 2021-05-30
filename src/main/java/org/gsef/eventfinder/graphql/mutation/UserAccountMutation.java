@@ -1,6 +1,9 @@
 package org.gsef.eventfinder.graphql.mutation;
 
+import java.util.List;
+
 import org.gsef.eventfinder.jpa.model.GSUser;
+import org.gsef.eventfinder.jpa.model.UserCharacter;
 import org.gsef.eventfinder.jpa.model.UserCharacter.CharacterType;
 import org.gsef.eventfinder.service.UserProfileService;
 import org.gsef.eventfinder.service.UserService;
@@ -18,17 +21,17 @@ public class UserAccountMutation implements GraphQLMutationResolver {
 	@Autowired
 	private UserProfileService userProfileService;
 
-	public GSUser addUserCharacter(Integer characterType, Integer level) {
+	public List<UserCharacter> addUserCharacter(Integer characterType, Integer level) {
 		GSUser guser = userService.findByUserName(Mutation.getAuthenticatedUser().getUsername());
 		return userProfileService.addCharacter(CharacterType.values()[characterType], level, guser);
 	}
 
-	public GSUser editUserCharacter(Integer characterType, Integer level) {
+	public UserCharacter editUserCharacter(Integer characterType, Integer level) {
 		GSUser guser = userService.findByUserName(Mutation.getAuthenticatedUser().getUsername());
-		return null;
+		return userProfileService.editCharacter(CharacterType.values()[characterType], level, guser);
 	}
 
-	public GSUser removeUserCharacter(Integer characterType) {
+	public List<UserCharacter> removeUserCharacter(Integer characterType) {
 		GSUser guser = userService.findByUserName(Mutation.getAuthenticatedUser().getUsername());
 		return userProfileService.removeCharacter(CharacterType.values()[characterType], guser);
 	}

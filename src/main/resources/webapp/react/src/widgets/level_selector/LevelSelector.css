@@ -22,7 +22,7 @@
     left: -15px;
     width: 280px;
     overflow-x: hidden;
-	background-color: #ede5da;
+    background-color: rgb(0 0 0 / 5%);
     border-radius: 4px;
     padding: 4px 4px 4px 4px;
     user-select: none;
@@ -32,7 +32,7 @@
 	width: 24px;
 	float: left;
     text-align: center;
-    -webkit-box-shadow: 1px 1px 5px 1px #404040bf;
+    background-color: #ede5da;
     box-shadow: 0 0 2px 0px #a0a0a0bf;
     border-radius: 100px;
     margin: 2px;

@@ -1,28 +1,28 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { graphql, commitMutation } from 'react-relay';
-import { loadQuery } from 'react-relay/hooks';
+import { graphql } from 'react-relay';
+import { loadQuery, usePreloadedQuery } from 'react-relay/hooks';
 import RelayEnvironment from '../../RelayEnvironment';
 import CharacterList from '../character_list/CharacterList';
 import CharacterStats from '../character_stats/CharacterStats';
 import './CharacterEditor.css';
 
-const addCharacterMutation = graphql`
-	mutation CharacterEditorAddMutation($characterType: Int!, $level: Int) {
-		addUserCharacter(characterType: $characterType, level: $level) {
+const characterEditorQuery = graphql`
+	query CharacterEditorQuery {
+		profile {
 			username
 		}
-	}
-`
-
-const characterEditorFragment = graphql`
-	fragment CharacterEditor_characters on Query {
 		characters {
 			characterTypeID
 			level
 		}
 	}
-`
+`;
+
+const loadedQuery = loadQuery(
+  RelayEnvironment,
+  characterEditorQuery,{}
+);
 
 async function fetchCharacterList() {
 	const data = await fetch('/json/characters.json', {
@@ -38,6 +38,9 @@ async function fetchCharacterList() {
 function CharacterEditor() {
 	const [characters, setCharacters] = useState([]);
 	const [selectedCharacter, setSelectedCharacter] = useState(0);
+
+	const userProfile = usePreloadedQuery(characterEditorQuery, loadedQuery);
+	console.log(userProfile.characters);
 
 	useEffect(()=> {
 		fetchCharacterList()
@@ -56,9 +59,11 @@ function CharacterEditor() {
 				<CharacterList
 					characters={characters}
 					selectedCharacter={selectedCharacter}
+					userCharacters={userProfile.characters}
 					onSelect={setSelectedCharacter} />
 				<CharacterStats
 					characters={characters}
+					userCharacters={userProfile.characters}
 					selectedCharacter={selectedCharacter} />
 			</div>
 		</div>

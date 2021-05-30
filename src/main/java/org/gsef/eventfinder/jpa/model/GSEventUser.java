@@ -2,11 +2,17 @@ package org.gsef.eventfinder.jpa.model;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 @Entity
-public class GSEventUser extends BaseEntity {
+public class GSEventUser {
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private long id;
 	@OneToOne
 	private GSEvent event;
 	@OneToOne(cascade = CascadeType.DETACH)
@@ -17,6 +23,10 @@ public class GSEventUser extends BaseEntity {
 	public GSEventUser(GSEvent event, GSUser user) {
 		this.event = event;
 		this.user = user;
+	}
+	
+	public Long getId() {
+		return id;
 	}
 
 	public GSEvent getEvent() {

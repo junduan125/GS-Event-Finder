@@ -1,6 +1,5 @@
 package org.gsef.eventfinder.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.gsef.eventfinder.jpa.model.GSUser;
@@ -27,17 +26,28 @@ public class UserProfileService {
 		return characters;
 	}
 
-	public GSUser addCharacter(CharacterType characterType, int level, GSUser user) {
-		if (user.getUserCharacters() == null)
-			user.setUserCharacters(new ArrayList<>());
-		user.addCharacter(characterType, level);
-		return endUsersRepo.save(user);
+	@Transactional
+	public List<UserCharacter> addCharacter(CharacterType characterType, int level, GSUser user) {
+		UserCharacter character = userCharacterRepo.findByUserAndCharacterType(user, characterType.ordinal());
+		if (character == null) {
+			character = new UserCharacter(characterType, level);
+			character.setUser(user);
+			userCharacterRepo.save(character);
+		}
+		System.out.println("userid " + user.getId());
+		return userCharacterRepo.findAllByUser(user);
+	}
+	
+	public UserCharacter editCharacter(CharacterType characterType, int level, GSUser user) {
+		UserCharacter character = userCharacterRepo.findByUserAndCharacterType(user, characterType.ordinal());
+		character.setLevel(level);
+		return userCharacterRepo.save(character);
 	}
 
-	public GSUser removeCharacter(CharacterType characterType, GSUser user) {
-		if (user.getUserCharacters() == null)
-			user.setUserCharacters(new ArrayList<>());
+	public List<UserCharacter> removeCharacter(CharacterType characterType, GSUser user) {
 		userCharacterRepo.delete(userCharacterRepo.findByUserAndCharacterType(user, characterType.ordinal()));
-		return endUsersRepo.save(user);
+		List<UserCharacter> characterList = endUsersRepo.findById(user.getId()).get().getUserCharacters();
+		characterList.size();
+		return characterList;
 	}
 }

@@ -6,6 +6,9 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Transient;
@@ -16,11 +19,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class User extends BaseEntity implements UserDetails {
+public class User implements UserDetails {
 	private static final long serialVersionUID = 1L;
 	
 	public enum Role { UNKNOWN, ADMIN, END_USER };
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	protected long id;
 	@Column
 	private String username;
 	@Column
@@ -48,6 +54,10 @@ public class User extends BaseEntity implements UserDetails {
 		default:
 			break;
 		}
+	}
+	
+	public Long getId() {
+		return id;
 	}
 
 	@Override

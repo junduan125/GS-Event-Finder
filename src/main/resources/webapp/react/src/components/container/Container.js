@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  RelayEnvironmentProvider,
-  loadQuery,
-  usePreloadedQuery,
-} from 'react-relay/hooks';
+import { RelayEnvironmentProvider } from 'react-relay/hooks';
 import RelayEnvironment from '../../RelayEnvironment';
 import HeaderBanner from '../header_banner/HeaderBanner';
 import Footer from '../footer/Footer';
@@ -14,7 +10,7 @@ const { Suspense } = React;
 function Container(props) {
 	return (
 		<RelayEnvironmentProvider environment={RelayEnvironment}>
-			<React.Suspense fallback={'Loading...'}>
+			<Suspense fallback={'Loading...'}>
 				<div>
 					<HeaderBanner currentNav={props.currentNav} />
 					<video className="background_video" autoplay="autoplay" muted loop >
@@ -25,7 +21,7 @@ function Container(props) {
 					</div>
 					<Footer />
 				</div>
-			</React.Suspense>
+			</Suspense>
 		</RelayEnvironmentProvider>
 	);
 }
