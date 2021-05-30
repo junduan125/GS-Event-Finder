@@ -19,11 +19,8 @@ public class UserProfileService {
 	@Autowired
 	GSUserCharacterRepo userCharacterRepo;
 	
-	@Transactional
 	public List<UserCharacter> ownedCharacters(GSUser user) {
-		List<UserCharacter> characters = endUsersRepo.findById(user.getId()).get().getUserCharacters();
-		characters.size();
-		return characters;
+		return userCharacterRepo.findAllByUser(user);
 	}
 
 	@Transactional
@@ -34,7 +31,6 @@ public class UserProfileService {
 			character.setUser(user);
 			userCharacterRepo.save(character);
 		}
-		System.out.println("userid " + user.getId());
 		return userCharacterRepo.findAllByUser(user);
 	}
 	

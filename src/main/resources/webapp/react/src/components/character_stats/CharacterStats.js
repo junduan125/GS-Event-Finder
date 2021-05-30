@@ -16,17 +16,18 @@ const addCharacterMutation = graphql`
 	}
 `
 
-function CharacterStats({characters, userCharacters, selectedCharacter}) {
+function CharacterStats({characters, userCharacters, selectedCharacter, updateUserCharacters}) {
 	const selectedCharacterData = characters.find( character => character.id === selectedCharacter);
 	const [level, setLevel] = useState(0);
-	const userHasCharacter = (userCharacters || []).some( c => c.id === selectedCharacter);
 
 	const onAddCharacter = () => {
 		commitMutation(RelayEnvironment, {
 			mutation: addCharacterMutation,
 			variables: {characterType: selectedCharacter, level},
 			onCompleted: response => {
-				console.log('res', response);
+				const userChars = (response.addUserCharacter || [])
+						.reduce( (map, char) => map.set(char.characterTypeID, char), new Map());
+				updateUserCharacters(userChars);
 			}
 		});
 	}
@@ -37,16 +38,16 @@ function CharacterStats({characters, userCharacters, selectedCharacter}) {
 				<img src={profilePicSrc + selectedCharacterData.name + '.png'} alt="" />
 			</div>}
 			<div className="character_controls">
-				{userHasCharacter ?
+				{userCharacters.has(selectedCharacter) ?
 					<LevelSelector
 						maxValue={90}
 						label="Lv."
 						selectedValue={level}
 						onChange={setLevel}
 				 	/> :
-				 	<div onClick={onAddCharacter}>
-				 		Add
-				 	</div>
+				 	<button onClick={onAddCharacter} type="button" className="charcter_stats_button">
+				 		I own this
+				 	</button>
 				}
 			</div>
 		</div>

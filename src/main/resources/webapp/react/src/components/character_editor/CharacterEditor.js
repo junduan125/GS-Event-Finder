@@ -36,11 +36,14 @@ async function fetchCharacterList() {
 }
 
 function CharacterEditor() {
-	const [characters, setCharacters] = useState([]);
-	const [selectedCharacter, setSelectedCharacter] = useState(0);
-
 	const userProfile = usePreloadedQuery(characterEditorQuery, loadedQuery);
-	console.log(userProfile.characters);
+	const userChars = (userProfile.characters || [])
+						.reduce( (map, char) => map.set(char.characterTypeID, char), new Map());
+
+	const [characters, setCharacters] = useState([]);
+	const [selectedCharacter, setSelectedCharacter] = useState(-1);
+	const [userCharacters, setUserCharacters] = useState(userChars || new Map());
+
 
 	useEffect(()=> {
 		fetchCharacterList()
@@ -59,12 +62,13 @@ function CharacterEditor() {
 				<CharacterList
 					characters={characters}
 					selectedCharacter={selectedCharacter}
-					userCharacters={userProfile.characters}
+					userCharacters={userCharacters}
 					onSelect={setSelectedCharacter} />
-				<CharacterStats
+				{selectedCharacter >= 0 && <CharacterStats
 					characters={characters}
-					userCharacters={userProfile.characters}
-					selectedCharacter={selectedCharacter} />
+					userCharacters={userCharacters}
+					updateUserCharacters={setUserCharacters}
+					selectedCharacter={selectedCharacter} />}
 			</div>
 		</div>
 	)
