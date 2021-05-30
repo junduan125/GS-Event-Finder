@@ -2,5 +2,8 @@
 	margin-top: 30px;
 }
 
-.content {
+.character_editor_content {
+	position: relative;
+    left: calc(50% - 350px);
+    width: 700px;
 }

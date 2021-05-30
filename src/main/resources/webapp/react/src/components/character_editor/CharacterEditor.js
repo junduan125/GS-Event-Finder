@@ -52,7 +52,7 @@ function CharacterEditor() {
 			<div className="name_header">
 				<h2>Character Editor</h2>
 			</div>
-			<div className="content">
+			<div className="character_editor_content">
 				<CharacterList
 					characters={characters}
 					selectedCharacter={selectedCharacter}

@@ -1,0 +1,54 @@
+.level_selector {
+    position: relative;
+    left: 30px;
+    width: 25px;
+}
+
+.level_selector_container {
+}
+
+.level_selector_main {
+    text-align: center;
+    width: 250px;
+    font-size: 50px;
+    background-color: #e9e5dc;
+    border-radius: 0 0 4px 4px;
+    user-select: none;
+}
+
+.level_selector_float_container {
+	position: absolute;
+    bottom: 75px;
+    left: -15px;
+    width: 280px;
+    overflow-x: hidden;
+	background-color: #ede5da;
+    border-radius: 4px;
+    padding: 4px 4px 4px 4px;
+    user-select: none;
+}
+
+.level_selector_item {
+	width: 24px;
+	float: left;
+    text-align: center;
+    -webkit-box-shadow: 1px 1px 5px 1px #404040bf;
+    box-shadow: 0 0 2px 0px #a0a0a0bf;
+    border-radius: 100px;
+    margin: 2px;
+}
+
+.level_selector_item:hover {
+	box-shadow: 0 0 10px #69e0ff;
+}
+
+.level_selector_label_container {
+	background-color: #ede5da;
+	position: absolute;
+    bottom: 50px;
+    right: 10px;
+    border-radius: 4px;
+    box-shadow: 0 0 2px 0px #a0a0a0bf;
+    padding: 0px 5px;
+    user-select: none;
+}
