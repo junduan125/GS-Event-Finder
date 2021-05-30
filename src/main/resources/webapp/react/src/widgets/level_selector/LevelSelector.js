@@ -6,7 +6,7 @@ function LevelSelector({maxValue, label, selectedValue, onChange}) {
 	const [showSelector, setShowSelector] = useState(false);
 
 	return (
-		<div class="level_selector">
+		<div className="level_selector">
 			{showSelector && <div className="level_selector_float_container">
 				{[...Array(maxValue).keys()].map( value => 
 					<div className="level_selector_item" key={value} 

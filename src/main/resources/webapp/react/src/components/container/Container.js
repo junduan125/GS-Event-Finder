@@ -13,7 +13,7 @@ function Container(props) {
 			<Suspense fallback={'Loading...'}>
 				<div>
 					<HeaderBanner currentNav={props.currentNav} />
-					<video className="background_video" autoplay="autoplay" muted loop >
+					<video className="background_video" autoPlay="autoplay" muted loop >
 						<source src="/assets/genshin_background_vid.mp4" type="video/mp4" />
 					</video>
 					<div className="container_content">

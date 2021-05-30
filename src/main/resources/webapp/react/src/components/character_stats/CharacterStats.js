@@ -16,9 +16,27 @@ const addCharacterMutation = graphql`
 	}
 `
 
+const removeCharacterMutation = graphql`
+	mutation CharacterStatsRemoveMutation($characterType: Int!) {
+		removeUserCharacter(characterType: $characterType) {
+			characterTypeID
+			level
+		}
+	}
+`
+
+const editCharacterMutation = graphql`
+	mutation CharacterStatsEditMutation($characterType: Int!, $level: Int) {
+		editUserCharacter(characterType: $characterType, level: $level) {
+			characterTypeID
+			level
+		}
+	}
+`
+
 function CharacterStats({characters, userCharacters, selectedCharacter, updateUserCharacters}) {
 	const selectedCharacterData = characters.find( character => character.id === selectedCharacter);
-	const [level, setLevel] = useState(0);
+	const [level, setLevel] = useState((userCharacters.get(selectedCharacter) || {level: 0}).level);
 
 	const onAddCharacter = () => {
 		commitMutation(RelayEnvironment, {
@@ -32,20 +50,53 @@ function CharacterStats({characters, userCharacters, selectedCharacter, updateUs
 		});
 	}
 
+	const onRemoveCharacter = () => {
+		commitMutation(RelayEnvironment, {
+			mutation: removeCharacterMutation,
+			variables: {characterType: selectedCharacter},
+			onCompleted: response => {
+				const userChars = (response.removeUserCharacter || [])
+						.reduce( (map, char) => map.set(char.characterTypeID, char), new Map());
+				updateUserCharacters(userChars);
+			}
+		});
+	}
+
+	const onEditCharacter = (level) => {
+		commitMutation(RelayEnvironment, {
+			mutation: editCharacterMutation,
+			variables: {characterType: selectedCharacter, level},
+			onCompleted: response => {
+				userCharacters.set(response.editUserCharacter.id, response.editUserCharacter);
+				const newMap = new Map();
+				userCharacters.forEach( (value, key) => newMap.set(key, value));
+				updateUserCharacters(newMap);
+			}
+		});
+	}
+
 	return (
-		<div class="character_container">
+		<div className="character_container">
 			{selectedCharacterData && <div className="character_portrait">
 				<img src={profilePicSrc + selectedCharacterData.name + '.png'} alt="" />
 			</div>}
 			<div className="character_controls">
 				{userCharacters.has(selectedCharacter) ?
-					<LevelSelector
-						maxValue={90}
-						label="Lv."
-						selectedValue={level}
-						onChange={setLevel}
-				 	/> :
-				 	<button onClick={onAddCharacter} type="button" className="charcter_stats_button">
+					<div>
+						<LevelSelector
+							maxValue={90}
+							label="Lv."
+							selectedValue={level}
+							onChange={(value) => {
+								setLevel(value);
+								onEditCharacter(value);
+							}}
+					 	/>
+					 	<button className="character_stats_remove_button" type="button"
+					 		onClick={onRemoveCharacter} />
+				 	</div> :
+				 	<button type="button" className="charcter_stats_button"
+				 		onClick={onAddCharacter} >
 				 		I own this
 				 	</button>
 				}

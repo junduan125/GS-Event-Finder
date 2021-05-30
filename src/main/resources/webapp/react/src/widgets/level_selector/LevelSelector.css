@@ -33,7 +33,7 @@
 	float: left;
     text-align: center;
     background-color: #ede5da;
-    box-shadow: 0 0 2px 0px #a0a0a0bf;
+    box-shadow: inset -1px -1px 3px, 1px 1px 5px;
     border-radius: 100px;
     margin: 2px;
 }

@@ -4,7 +4,6 @@ import './CharacterList.css';
 const profilePicSrc = 'https://rerollcdn.com/GENSHIN/Characters/';
 
 function CharacterList({characters, selectedCharacter, userCharacters, onSelect}) {
-	console.log('userChars', userCharacters);
 	return (
 		<div className="list_container">
 			{

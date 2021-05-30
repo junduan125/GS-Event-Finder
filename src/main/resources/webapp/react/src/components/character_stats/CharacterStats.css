@@ -35,3 +35,14 @@
     font-size: 18px;
     outline: none;
 }
+
+.character_stats_remove_button {
+	background-image: url(/assets/icons/delete_icon.svg);
+    outline: none;
+    border: none;
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    top: 5px;
+    right: 65px;
+}

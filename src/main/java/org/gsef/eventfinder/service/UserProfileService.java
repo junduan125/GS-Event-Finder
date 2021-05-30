@@ -42,8 +42,6 @@ public class UserProfileService {
 
 	public List<UserCharacter> removeCharacter(CharacterType characterType, GSUser user) {
 		userCharacterRepo.delete(userCharacterRepo.findByUserAndCharacterType(user, characterType.ordinal()));
-		List<UserCharacter> characterList = endUsersRepo.findById(user.getId()).get().getUserCharacters();
-		characterList.size();
-		return characterList;
+		return userCharacterRepo.findAllByUser(user);
 	}
 }

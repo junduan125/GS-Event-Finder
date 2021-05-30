@@ -48,7 +48,6 @@ function CharacterEditor() {
 	useEffect(()=> {
 		fetchCharacterList()
 			.then(data => {
-				console.log(data);
 				setCharacters(data.characters);
 			})
 	}, [setCharacters]);
