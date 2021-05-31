@@ -8,11 +8,13 @@ import { NAV_LINKS } from '../components/header_banner/HeaderBanner';
 const eventQuery = graphql`
 	query EventsQuery {
 		profile {
-			username
-		}
-		events {
-			eventTime
-			eventType
+			user {
+				username
+			}
+			events {
+				eventTime
+				eventType
+			}
 		}
 	}
 `;

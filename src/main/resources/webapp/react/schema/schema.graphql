@@ -1,7 +1,5 @@
 type Query {
-    profile: GSUser
-    characters: [UserCharacter]
-    events: [GSEvent]
+	profile: GSProfile
 }
 
 type Mutation {
@@ -14,6 +12,12 @@ type Mutation {
 	leaveEvent(id: ID): Boolean
 	
 	rateUser(id: ID, overall: Int, griefed: Boolean, flaked: Boolean): Boolean
+}
+
+type GSProfile {
+    user: GSUser
+    characters: [UserCharacter]
+    events: [GSEvent]
 }
 
 type GSUser {

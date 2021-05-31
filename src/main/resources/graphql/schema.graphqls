@@ -1,7 +1,5 @@
 type Query {
-    profile: GSUser
-    characters: [UserCharacter]
-    events: [GSEvent]
+    profile: GSProfile
 }
 
 type Mutation {

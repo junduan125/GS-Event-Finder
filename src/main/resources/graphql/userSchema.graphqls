@@ -4,6 +4,12 @@ extend type Mutation {
 	removeUserCharacter(characterType: Int): [UserCharacter]
 }
 
+type GSProfile {
+	user: GSUser
+    characters: [UserCharacter]
+    events: [GSEvent]
+}
+
 type GSUser {
 	username: String!
 }
