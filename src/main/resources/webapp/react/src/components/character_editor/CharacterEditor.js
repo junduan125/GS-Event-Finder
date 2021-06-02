@@ -44,7 +44,7 @@ function CharacterEditor() {
 
 	const [characters, setCharacters] = useState([]);
 	const [selectedCharacter, setSelectedCharacter] = useState(-1);
-	const [userCharacters, setUserCharacters] = useState(userChars || new Map());
+	const [userCharacters, setUserCharacters] = useState(userChars);
 
 	const forceUseCharacter = (data) => {
 		setUserCharacters(data);
