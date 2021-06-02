@@ -23,7 +23,7 @@ public class EventMutation implements GraphQLMutationResolver {
 	private EventService eventService;
 
 	public GSEvent createEvent(Long eventTime, Integer eventType) {
-		return eventService.createEvent(new Date(eventTime), GSEventType.values()[eventType]);
+		return eventService.createEvent(new Date(eventTime * 1000), GSEventType.values()[eventType]);
 	}
 
 	public GSEvent joinEvent(Long id) throws UserExceedEventMaximumException {

@@ -1,0 +1,37 @@
+.gs_dropdown_container {
+    position: relative;
+}
+
+.gs_dropdown_label_container {
+    font-size: 18px;
+    width: 200px;
+    height: 1.2em;
+    background-color: #ede5da;
+    border-radius: 25px;
+    box-shadow: 0 0 2px 0px #a0a0a0bf;
+    padding: 5px 15px;
+    user-select: none;
+}
+
+.gs_dropdown_float_container {
+    position: absolute;
+    width: 200px;
+    top: 40px;
+    background-color: #ede5da;
+    overflow-x: hidden;
+    border-radius: 25px;
+    padding: 15px 15px;
+    user-select: none;
+}
+
+.gs_dropdown_icon {
+    height: 100%;
+    margin-left: 5px;
+    margin-right: 10px;
+    float: right;
+}
+
+.gs_dropdown_float_item:hover {
+    background-color: #656565;
+    color: #fff;
+}

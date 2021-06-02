@@ -7,7 +7,7 @@ type Mutation {
 	editUserCharacter(characterType: Int, level: Int): UserCharacter
 	removeUserCharacter(characterType: Int): [UserCharacter]
 	
-	createEvent(eventTime: Int, eventType: Int): GSEvent
+	createEvent(eventTime: Int!, eventType: Int!): GSEvent
 	joinEvent(id: ID): GSEvent
 	leaveEvent(id: ID): Boolean
 	
@@ -30,6 +30,6 @@ type UserCharacter {
 }
 
 type GSEvent {
-	eventTime: Int
+	eventTimeSeconds: Int
 	eventType: Int
 }

@@ -2,6 +2,9 @@ package org.gsef.eventfinder.service;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import org.gsef.eventfinder.exception.UserExceedEventMaximumException;
 import org.gsef.eventfinder.jpa.model.GSEvent;
@@ -43,5 +46,10 @@ public class EventService {
 		GSEventUser gsEventUser = gsEventUserRepo.findByUserAndEvent(user, event);
 		gsEventUserRepo.delete(gsEventUser);
 		return false;
+	}
+	
+	public List<GSEvent> listEvents() {
+		return StreamSupport.stream(eventRepo.findAll().spliterator(), false)
+				.collect(Collectors.toList());
 	}
 }

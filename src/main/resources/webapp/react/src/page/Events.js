@@ -1,36 +1,15 @@
 import React from 'react';
-import {graphql} from 'react-relay';
-import { loadQuery } from 'react-relay/hooks';
-import RelayEnvironment from '../RelayEnvironment';
 import Container from '../components/container/Container';
+import EventList from '../components/event_list/EventList';
 import { NAV_LINKS } from '../components/header_banner/HeaderBanner';
-
-const eventQuery = graphql`
-	query EventsQuery {
-		profile {
-			user {
-				username
-			}
-			events {
-				eventTime
-				eventType
-			}
-		}
-	}
-`;
-
-const profileQueryRef = loadQuery(
-  RelayEnvironment,
-  eventQuery,{}
-);
 
 
 function Events(props) {
 	return (
 		<Container {...props} currentNav={NAV_LINKS.EVENTS} >
-			<div />
+			<EventList />
 		</Container>
 	);
 }
 
-export default Events
+export default Events;

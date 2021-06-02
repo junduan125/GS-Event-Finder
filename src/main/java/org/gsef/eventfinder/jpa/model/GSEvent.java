@@ -59,6 +59,10 @@ public class GSEvent {
 	public void setEventTime(Date eventTime) {
 		this.eventTime = eventTime;
 	}
+	
+	public Integer getEventTimeSeconds() {
+		return (int)(eventTime.getTime() / 1000);
+	}
 
 	public List<GSEventUser> getEventUsers() {
 		return eventUsers;

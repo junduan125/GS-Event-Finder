@@ -1,0 +1,30 @@
+.gs_date_selector_container {
+	position: relative;
+    width: 140px;
+    height: 1.2em;
+    background-color: #ede5da;
+    border-radius: 25px;
+    box-shadow: 0 0 2px 0px #a0a0a0bf;
+    padding: 5px 15px;
+    user-select: none;
+}
+
+.gs_date_selector_container input {
+    border: none;
+    height: 1.2em;
+    background-color: #ede5da;
+	font-size: 18px;
+    width: 100px;
+    outline: none !important;
+}
+
+.gs_date_selector_container:focus input {
+    border: none;
+}
+
+.gs_date_selector_icon {
+	height: 100%;
+	margin-left: 5px;
+	margin-right: 10px;
+	float: right;
+}

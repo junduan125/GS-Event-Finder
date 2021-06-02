@@ -21,7 +21,7 @@ const characterEditorQuery = graphql`
 	}
 `;
 
-const loadedQuery = loadQuery(
+const characterQueryRef = loadQuery(
   RelayEnvironment,
   characterEditorQuery,{}
 );
@@ -38,7 +38,7 @@ async function fetchCharacterList() {
 }
 
 function CharacterEditor() {
-	const userProfile = usePreloadedQuery(characterEditorQuery, loadedQuery);
+	const userProfile = usePreloadedQuery(characterEditorQuery, characterQueryRef);
 	const userChars = (userProfile.profile.characters || [])
 						.reduce( (map, char) => map.set(char.characterTypeID, char), new Map());
 

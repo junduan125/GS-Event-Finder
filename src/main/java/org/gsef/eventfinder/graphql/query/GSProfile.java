@@ -1,11 +1,11 @@
 package org.gsef.eventfinder.graphql.query;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.gsef.eventfinder.jpa.model.GSEvent;
 import org.gsef.eventfinder.jpa.model.GSUser;
 import org.gsef.eventfinder.jpa.model.UserCharacter;
+import org.gsef.eventfinder.service.EventService;
 import org.gsef.eventfinder.service.UserProfileService;
 import org.gsef.eventfinder.service.UserService;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,10 +15,12 @@ public class GSProfile {
 	
 	private UserService userService;
 	private UserProfileService userProfileService;
-
-	public GSProfile (UserService userService, UserProfileService userProfileService) {
+	private EventService eventService;
+	
+	public GSProfile (UserService userService, UserProfileService userProfileService, EventService eventService) {
 		this.userService = userService;
 		this.userProfileService = userProfileService;
+		this.eventService = eventService;
 	}
 	
 	private static UserDetails getAuthenticatedUser() {
@@ -36,6 +38,6 @@ public class GSProfile {
 	}
 	
 	public List<GSEvent> getEvents() {
-		return new ArrayList<>();
+		return eventService.listEvents();
 	}
 }

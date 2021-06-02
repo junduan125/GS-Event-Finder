@@ -1,5 +1,6 @@
 package org.gsef.eventfinder.graphql.query;
 
+import org.gsef.eventfinder.service.EventService;
 import org.gsef.eventfinder.service.UserProfileService;
 import org.gsef.eventfinder.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +17,12 @@ public class Query implements GraphQLQueryResolver  {
 	@Autowired
 	private UserProfileService userProfileService;
 	
+	@Autowired
+	private EventService eventService;
+	
 	public Query() {}
 	
 	public GSProfile getProfile() {
-		return new GSProfile(userService, userProfileService);
+		return new GSProfile(userService, userProfileService, eventService);
 	}
 }
