@@ -1,8 +1,9 @@
 import React from 'react';
 import { useState } from 'react';
+import ClipLoader from "react-spinners/ClipLoader";
 import './LevelSelector.css';
 
-function LevelSelector({maxValue, label, selectedValue, onChange}) {
+function LevelSelector({maxValue, label, selectedValue, onChange, loading}) {
 	const [showSelector, setShowSelector] = useState(false);
 
 	return (
@@ -27,7 +28,12 @@ function LevelSelector({maxValue, label, selectedValue, onChange}) {
 					setShowSelector(!showSelector)
 				}
 			}>
-				<span><strong>{selectedValue}</strong></span>
+				{loading ?
+					<div className="level_selector_loader">
+						<ClipLoader color="#fff" loading={loading} size={42} />
+					</div> :
+					<span><strong>{selectedValue}</strong></span>
+				}
 			</div>
 		</div>
 	);

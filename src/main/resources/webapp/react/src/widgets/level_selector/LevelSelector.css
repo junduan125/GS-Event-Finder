@@ -52,3 +52,7 @@
     padding: 0px 5px;
     user-select: none;
 }
+
+.level_selector_loader {
+    padding: 10px;
+}

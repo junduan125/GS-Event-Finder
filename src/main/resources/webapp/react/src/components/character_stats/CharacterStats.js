@@ -36,6 +36,7 @@ const editCharacterMutation = graphql`
 
 function CharacterStats({characters, userCharacters, selectedCharacter, updateUserCharacters}) {
 	const selectedCharacterData = characters.find( character => character.id === selectedCharacter);
+	const [loading, setLoading] = useState(false);
 
 	const onAddCharacter = () => {
 		const level = 0;
@@ -63,6 +64,7 @@ function CharacterStats({characters, userCharacters, selectedCharacter, updateUs
 	}
 
 	const onEditCharacter = (level) => {
+		setLoading(true);
 		commitMutation(RelayEnvironment, {
 			mutation: editCharacterMutation,
 			variables: {characterType: selectedCharacter, level},
@@ -70,6 +72,7 @@ function CharacterStats({characters, userCharacters, selectedCharacter, updateUs
 				const character = response.editUserCharacter;
 				userCharacters.set(character.characterTypeID, character);
 				updateUserCharacters(new Map(userCharacters));
+				setLoading(false);
 			}
 		});
 	}
@@ -85,6 +88,7 @@ function CharacterStats({characters, userCharacters, selectedCharacter, updateUs
 						<LevelSelector
 							maxValue={90}
 							label="Lv."
+							loading={loading}
 							selectedValue={userCharacters.get(selectedCharacter).level}
 							onChange={(value) => {
 								onEditCharacter(value);
