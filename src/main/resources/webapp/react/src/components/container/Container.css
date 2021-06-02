@@ -16,6 +16,7 @@ body {
 .container_content {
   position: relative;
   top: 66px;
+  left: 70px;
   width: calc(100% - 30px);
   margin: 5px 15px;
 }

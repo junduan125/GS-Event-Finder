@@ -1,0 +1,13 @@
+.user_profile_badge_container {
+	text-align: center;
+    color: #ffedcc;
+}
+
+.user_profile_badge_uuid {
+    color: #fff;
+    font-size: 20px;
+}
+
+.user_profile_badge_uuid_prompt {
+    font-size: 18px;
+}

@@ -29,7 +29,6 @@ function LoginForm({params, onHide}) {
 			body: convertObjectToURLEncoded(user),
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
 		}).then( response => {
-			console.log(response);
 			setUser(emptyUser);
 			if (response.status === 200) {
 				onHide();

@@ -7,6 +7,14 @@ public class NewGSUser {
 	private String uuid;
 	private int worldLevel;
 	
+	public NewGSUser() {}
+	
+	public NewGSUser(String username, String uuid, int wordLevel) {
+		this.username = username;
+		this.uuid = uuid;
+		this.worldLevel = wordLevel;
+	}
+	
 	public String getUsername() {
 		return username;
 	}
