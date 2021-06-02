@@ -5,23 +5,23 @@ const profilePicSrc = 'https://rerollcdn.com/GENSHIN/Characters/';
 
 function CharacterList({characters, selectedCharacter, userCharacters, onSelect}) {
 	return (
-		<div className="list_container">
+		<div className="character_list_container">
 			{
 				characters.map( character => {
 					let backgroundStyle;
 					switch(character.stars) {
-						case '5': backgroundStyle = 'gold_item ';
+						case '5': backgroundStyle = 'character_list_gold_item ';
 							break;
-						default: backgroundStyle = 'purple_item ';
+						default: backgroundStyle = 'character_list_purple_item ';
 					}
-					const selectedStyle = selectedCharacter === character.id ? 'selected_item ' : 'unselected_item ';
+					const selectedStyle = selectedCharacter === character.id ? 'character_list_selected_item ' : 'character_list_unselected_item ';
 					return (
-						<div key={character.id} className={"list_item " + backgroundStyle + selectedStyle} onClick={() => onSelect(character.id)}>
+						<div key={character.id} className={"character_list_item " + backgroundStyle + selectedStyle} onClick={() => onSelect(character.id)}>
 							<img src={profilePicSrc + character.name + '.png'} alt={character.name} />
-							<div className="level_indicator">
+							<div className="character_list_level_indicator">
 								<strong><span>Lv. </span><span>{(userCharacters.get(character.id) || {level: 0}).level }</span></strong>
 							</div>
-							{!userCharacters.has(character.id) && <div className="locked_overlay" />}
+							{!userCharacters.has(character.id) && <div className="character_list_locked_overlay" />}
 						</div>
 					)}
 				)

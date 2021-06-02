@@ -1,4 +1,4 @@
-.login_container {
+.login_form_container {
 	position: fixed;
 	right: 0;
 	top: 66px;
@@ -11,7 +11,7 @@
 	transition: all 0.2s ease-in-out 0s;
 }
 
-.login_container input {
+.login_form_container input {
 	width: 100%;
     padding: 10px 12px;
     background-color: transparent;
@@ -23,17 +23,17 @@
     margin-bottom: 15px;
 }
 
-.login_container input::placeholder {
+.login_form_container input::placeholder {
 	color: #c8cccf;
 }
 
-.login_error {
+.login_form_error {
     color: #b70707;
     margin:  15px 15px;
     font-size: 14px;
 }
 
-.login_button {
+.login_form_button {
 	display: block;
     width: 100%;
     border: 1px solid #3b4354;
@@ -46,25 +46,25 @@
     outline: none;
 }
 
-.login_disclaimer {
+.login_form_disclaimer {
 	font-size: 14px;
 	color: #c5c5c5;
 	margin-left: 15px;
 }
 
-.additional_login_options {
+.login_form_additional_login_options {
 	display: flex;
 	justify-content: space-between;
 	text-align: center;
 }
 
-.additional_login_options > a {
+.login_form_additional_login_options > a {
 	text-decoration: none;
     cursor: pointer;
     color: #7f858a;
 }
 
-.close_button {
+.login_form_close_button {
 	color: #7f858a;
 	float: right;
 	margin: -10px -20px;
@@ -73,7 +73,7 @@
 	user-select: none;
 }
 
-.float_out {
+.login_form_float_out {
 	animation-name: float_out;
     animation-duration: 1s;
     animation-timing-function: ease-in-out;

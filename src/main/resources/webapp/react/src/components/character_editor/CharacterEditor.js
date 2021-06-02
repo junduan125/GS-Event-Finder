@@ -60,7 +60,7 @@ function CharacterEditor() {
 
 	return (
 		<div>
-			<div className="name_header">
+			<div className="haracter_editor_name_header">
 				<h2>Character Editor</h2>
 			</div>
 			<div className="character_editor_content">

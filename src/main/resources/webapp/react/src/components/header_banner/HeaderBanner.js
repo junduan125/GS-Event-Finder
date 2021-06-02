@@ -7,8 +7,8 @@ import LoginForm from '../login/LoginForm';
 import './HeaderBanner.css';
 
 export const NAV_LINKS = {
-	HOME: 'selected_nav_home',
-	EVENTS: 'selected_nav_events',
+	HOME: 'header_banner_selected_nav_home',
+	EVENTS: 'header_banner_selected_nav_events',
 }
 
 async function fetchUserProfile() {
@@ -40,20 +40,20 @@ function HeaderBanner(props) {
 	};
 
 	return (
-		<div className="header">
-			<div className="header_logo">
+		<div className="header_banner">
+			<div className="header_banner_logo">
 				<img src="/assets/genshin_impact_logo_no_outline.png" alt="" width="173" height="66" />
 			</div>
-			<div className="header_nav">
-				<div id="navSelector" className={'nav_selector ' + selectedNavClass} />
-				<Link className="nav_link selected_nav_link" to="/" 
+			<div className="header_banner_nav">
+				<div id="navSelector" className={'header_banner_nav_selector ' + selectedNavClass} />
+				<Link className="header_banner_nav_link" to="/" 
 					onMouseEnter={() => onSelectNavLink(NAV_LINKS.HOME)}
 					onMouseLeave={() => onSelectNavLink(props.currentNav)}>HOME</Link>
-				<Link className="nav_link" to="/user/events" 
+				<Link className="header_banner_nav_link" to="/user/events" 
 					onMouseEnter={() => onSelectNavLink(NAV_LINKS.EVENTS)}
 					onMouseLeave={() => onSelectNavLink(props.currentNav)}>EVENTS</Link>
 			</div>
-			<div className="header_signin">
+			<div className="header_banner_signin">
 				{!hasProfile(userProfile) && <span onClick={() => setShowSignin(!showSignin)}>Sign in</span>}
 				{hasProfile(userProfile) && <UserProfileBadge userProfile={userProfile} />}
 			</div>

@@ -1,4 +1,4 @@
-.list_container {
+.character_list_container {
 	position: absolute;
     left: 0;
 	display: grid;
@@ -10,7 +10,7 @@
     padding: 10px;
 }
 
-.list_item {
+.character_list_item {
 	position: relative;
 	width: 70px;
     height: 90px;
@@ -18,30 +18,30 @@
     margin: 5px;
 }
 
-.gold_item {
+.character_list_gold_item {
     background-color: #98662c;
 }
 
-.purple_item {
+.character_list_purple_item {
 	background-color: #8567a3;
 }
 
-.list_item > img {
+.character_list_item > img {
 	width: 70px;
     height: 70px;
     border-radius: 4px;
     box-shadow: 1px 1px 5px 1px #404040bf;
 }
 
-.selected_item {
+.character_list_selected_item {
 	box-shadow: 0 -5px 0 #bffe40;
 }
 
-.unselected_item:hover {
+.character_list_unselected_item:hover {
 	box-shadow: 0 0 10px #69e0ff;
 }
 
-.level_indicator {
+.character_list_level_indicator {
 	position: absolute;
 	bottom: 0;
 	left: 0;
@@ -53,7 +53,7 @@
     font-size: 14px;
 }
 
-.locked_overlay {
+.character_list_locked_overlay {
 	position: absolute;
 	top: 0;
 	left: 0;

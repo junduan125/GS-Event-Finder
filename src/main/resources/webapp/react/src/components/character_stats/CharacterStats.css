@@ -1,4 +1,4 @@
-.character_container {
+.character_stats_container {
 	position: absolute;
 	left: 380px;
 	height: 500px;
@@ -8,22 +8,22 @@
     box-shadow: 1px 1px 5px 1px #404040bf;
 }
 
-.character_portrait {
+.character_stats_portrait {
     text-align: center;
     margin-top: 15px;
 }
 
-.character_portrait > img {
+.character_stats_portrait > img {
 	width: 200px;
 }
 
-.character_controls {
+.character_stats_controls {
 	position: absolute;
 	bottom: 10px;
 	width: 100%;
 }
 
-.charcter_stats_button {
+.character_stats_add_button {
 	display: block;
     width: calc(100% - 20px);
     border: 1px solid #3b4354;

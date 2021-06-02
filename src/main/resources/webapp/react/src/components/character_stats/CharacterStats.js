@@ -76,11 +76,11 @@ function CharacterStats({characters, userCharacters, selectedCharacter, updateUs
 	}
 
 	return (
-		<div className="character_container">
-			{selectedCharacterData && <div className="character_portrait">
+		<div className="character_stats_container">
+			{selectedCharacterData && <div className="character_stats_portrait">
 				<img src={profilePicSrc + selectedCharacterData.name + '.png'} alt="" />
 			</div>}
-			<div className="character_controls">
+			<div className="character_stats_controls">
 				{userCharacters.has(selectedCharacter) ?
 					<div>
 						<LevelSelector
@@ -95,7 +95,7 @@ function CharacterStats({characters, userCharacters, selectedCharacter, updateUs
 					 	<button className="character_stats_remove_button" type="button"
 					 		onClick={onRemoveCharacter} />
 				 	</div> :
-				 	<button type="button" className="charcter_stats_button"
+				 	<button type="button" className="character_stats_add_button"
 				 		onClick={onAddCharacter} >
 				 		I own this
 				 	</button>

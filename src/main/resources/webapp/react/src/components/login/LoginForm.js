@@ -42,12 +42,12 @@ function LoginForm({params, onHide}) {
 	return (
 		<div>
 			{ !showRegister &&
-			<div className="login_container float_out">
-				<div className="close_button" onClick={onHide}>x</div>
-				<div className="login_disclaimer">
+			<div className="login_form_container login_form_float_out">
+				<div className="login_form_close_button" onClick={onHide}>x</div>
+				<div className="login_form_disclaimer">
 					<p>This site is not affliated with miHoyo and Genshin, login information is not tied to miHoyo in any way</p>
 				</div>
-				<div className="login_error">
+				<div className="login_form_error">
 					{ loginErrors ? <span>Invalid Username/password</span> : <span/>}
 				</div>
 				<form name="loginForm" onSubmit={handleSubmit}>
@@ -58,10 +58,10 @@ function LoginForm({params, onHide}) {
 			        	<input type="password" placeholder="Password"
 			        		name="password" value={user.password}
 			        		onChange={e => setUser({ ...user, password: e.target.value})} />
-			        	<button className="login_button" type="submit">Log in</button>
+			        	<button className="login_form_button" type="submit">Log in</button>
 			        </div>
 				</form>
-				<div className="additional_login_options">
+				<div className="login_form_additional_login_options">
 					<Link to="">Forgot Password?</Link>
 					<Link onClick={() => {setShowRegister(true)}}>Register Now</Link>
 				</div>
