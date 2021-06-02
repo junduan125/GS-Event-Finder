@@ -20,9 +20,9 @@ function UserNavControls({userProfile}) {
 				window.location.reload();
 			}
 		}).then(() => {
-			window.location.reload();
+			window.location.replace("/");
 		}).catch(() => {
-			window.location.reload();
+			window.location.replace("/");
 		});
 	}
 
