@@ -3,8 +3,8 @@ import { useState } from 'react';
 import { graphql } from 'react-relay';
 import { loadQuery, usePreloadedQuery } from 'react-relay/hooks';
 import RelayEnvironment from '../../RelayEnvironment';
-import NewEventForm from './NewEventForm';
 import EventItem from './EventItem';
+import EventControls from './EventControls';
 import './EventList.css';
 
 const eventQuery = graphql`
@@ -26,13 +26,9 @@ function EventList() {
 	const eventProfile = usePreloadedQuery(eventQuery, eventQueryRef);
 	const events = eventProfile.profile.events;
 
-	const [showCreateEvent, setShowCreateEvent] = useState(true);
-
 	return (
-		<div>
-			<div className="event_list_controls">
-				{showCreateEvent && <NewEventForm />}
-			</div>
+		<div className="event_list_container">
+			<EventControls />
 			{events.map( (event, index) => (
 				<EventItem key={index} eventQueryRef={event} />
 			))}

@@ -17,6 +17,6 @@ body {
   position: relative;
   top: 66px;
   left: 70px;
-  width: calc(100% - 30px);
+  width: calc(100% - 80px);
   margin: 5px 15px;
 }
