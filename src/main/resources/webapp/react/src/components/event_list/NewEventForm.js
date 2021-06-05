@@ -11,7 +11,7 @@ const createEventMutation = graphql`
 	mutation NewEventFormCreateMutation($eventTime: Int!, $eventType: Int!) {
 		createEvent(eventTime: $eventTime, eventType: $eventType) {
 			eventType
-			eventTimeSeconds
+			eventTime
 		}
 	}
 `

@@ -4,10 +4,11 @@ extend type Mutation {
 	removeUserCharacter(characterType: Int): [UserCharacter]
 }
 
-type GSProfile {
+type GSProfile implements Node {
+	id: ID!
 	user: GSUser
     characters: [UserCharacter]
-    events: [GSEvent]
+    events(first: Int, after: Int): GSEventEdgeConnection
 }
 
 type GSUser {

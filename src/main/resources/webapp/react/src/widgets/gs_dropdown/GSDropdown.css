@@ -1,5 +1,6 @@
 .gs_dropdown_container {
     position: relative;
+    margin-left: 15px;
 }
 
 .gs_dropdown_label_container {

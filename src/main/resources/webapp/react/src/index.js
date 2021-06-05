@@ -15,8 +15,8 @@ function App() {
 	return(
   		<Router>
 			<Switch>
-				<Route path="/user/profile" component={() => <Profile params={params} />} />
-				<Route path="/user/events" component={() => <Events params={params} />} />
+				<Route path="/user/profile" component={Profile} />
+				<Route path="/user/events" component={Events} />
 				<Route path="/" component={() => <Home params={params} />} />
 			</Switch>
   		</Router>

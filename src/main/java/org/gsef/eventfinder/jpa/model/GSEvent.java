@@ -12,14 +12,20 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.apache.tomcat.util.codec.binary.Base64;
+import org.gsef.eventfinder.graphql.query.model.Node;
+
 @Entity
 public class GSEvent {
 	
 	public enum GSEventType {UNKNOWN, SOCIAL, MINING, MOB_HUNTING };
+	public enum GSEventStatus { UNKNOWN, OPEN, CLOSED, DRAFT, FULL };
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	protected long id;
+	@Column
+	private int status;
 	@Column
 	private int eventType;
 	@Column
@@ -30,18 +36,26 @@ public class GSEvent {
 	
 	public GSEvent() {}
 	
-	public GSEvent(Long eventTime, GSEventType eventType) {
-		this.eventTime = new Date(eventTime);
-		this.eventType = eventType.ordinal();
-	}
-	
-	public GSEvent(Date eventTime, GSEventType eventType) {
+	public GSEvent(Date eventTime, GSEventType eventType, GSEventStatus status) {
 		this.eventTime = eventTime;
 		this.eventType = eventType.ordinal();
+		this.status = status.ordinal();
+	}
+	
+	public GSEvent(Long eventTime, GSEventType eventType) {
+		this(new Date(eventTime), eventType, GSEventStatus.OPEN);
 	}
 	
 	public Long getId() {
 		return id;
+	}
+
+	public GSEventStatus getStatus() {
+		return GSEventStatus.values()[status];
+	}
+
+	public void setStatus(GSEventStatus status) {
+		this.status = status.ordinal();
 	}
 
 	public int getEventType() {

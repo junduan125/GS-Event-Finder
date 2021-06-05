@@ -6,8 +6,9 @@ import './EventItem.css';
 
 const eventItemFragment = graphql`
 	fragment EventItem_event on GSEvent {
+		id
 		eventType
-		eventTimeSeconds
+		eventTime
 	}
 `
 
@@ -17,7 +18,7 @@ function EventItem({eventQueryRef}) {
 	return (
 		<div>
 			<span>{event.eventType}</span>
-			<span>{event.eventTimeSeconds}</span>
+			<span>{event.eventTime}</span>
 		</div>
 	);
 }

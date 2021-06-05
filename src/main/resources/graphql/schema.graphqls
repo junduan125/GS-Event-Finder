@@ -1,7 +1,24 @@
 type Query {
     profile: GSProfile
+  	node(id: ID!): Node
+}
+
+interface Node {
+	id: ID!
 }
 
 type Mutation {
 	rateUser(id: ID, overall: Int, griefed: Boolean, flaked: Boolean): Boolean
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+input SortOptions {
+	field: String!
+	order: String!
 }

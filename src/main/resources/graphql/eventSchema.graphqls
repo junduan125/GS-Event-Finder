@@ -4,7 +4,18 @@ extend type Mutation {
 	leaveEvent(id: ID): Boolean
 }
 
-type GSEvent {
-	eventTimeSeconds: Int
+type GSEvent implements Node {
+	id: ID!
+	eventTime: Int
 	eventType: Int
+}
+
+type GSEventEdgeConnection {
+  edges: [GSEventEdge]
+  pageInfo: PageInfo!
+}
+
+type GSEventEdge {
+	cursor: String!
+	node: GSEvent
 }

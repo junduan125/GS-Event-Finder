@@ -1,5 +1,10 @@
 type Query {
 	profile: GSProfile
+  	node(id: ID!): Node
+}
+
+interface Node {
+	id: ID!
 }
 
 type Mutation {
@@ -14,10 +19,28 @@ type Mutation {
 	rateUser(id: ID, overall: Int, griefed: Boolean, flaked: Boolean): Boolean
 }
 
-type GSProfile {
+type GSProfile implements Node {
+  	id: ID!
     user: GSUser
     characters: [UserCharacter]
-    events: [GSEvent]
+    events(first: Int, after: Int): GSEventEdgeConnection
+}
+
+type GSEventEdgeConnection {
+  edges: [GSEventEdge]
+  pageInfo: PageInfo!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+type GSEventEdge {
+	cursor: String!
+	node: GSEvent
 }
 
 type GSUser {
@@ -29,7 +52,13 @@ type UserCharacter {
 	level: Int
 }
 
-type GSEvent {
-	eventTimeSeconds: Int
+type GSEvent implements Node {
+  	id: ID!
+	eventTime: Int
 	eventType: Int
+}
+
+input SortOptions {
+	field: String!
+	order: String!
 }

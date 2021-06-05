@@ -1,5 +1,6 @@
 package org.gsef.eventfinder.graphql.query;
 
+import org.gsef.eventfinder.graphql.query.model.Node;
 import org.gsef.eventfinder.service.EventService;
 import org.gsef.eventfinder.service.UserProfileService;
 import org.gsef.eventfinder.service.UserService;
@@ -24,5 +25,9 @@ public class Query implements GraphQLQueryResolver  {
 	
 	public GSProfile getProfile() {
 		return new GSProfile(userService, userProfileService, eventService);
+	}
+	
+	public Node getNode(String id) {
+		return getProfile();
 	}
 }

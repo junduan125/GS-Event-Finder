@@ -7,6 +7,7 @@
     box-shadow: 0 0 2px 0px #a0a0a0bf;
     padding: 5px 15px;
     user-select: none;
+    margin-left: 15px;
 }
 
 .gs_date_selector_container input {

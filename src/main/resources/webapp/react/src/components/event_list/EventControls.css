@@ -2,3 +2,21 @@
 	position: relative;
 	display: flex;
 }
+
+.event_controls_filters {
+    width: 100%;
+	display: flex;
+    justify-content: flex-start;
+}
+
+.event_controls_button {
+	display: block;
+    border: 1px solid #3b4354;
+    background-color: #6b9a48;
+    color: #fff;
+    border-radius: 4px;
+    line-height: 38px;
+    text-align: center;
+    font-size: 18px;
+    outline: none;
+}
