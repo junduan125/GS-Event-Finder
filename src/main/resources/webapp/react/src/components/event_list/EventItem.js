@@ -16,7 +16,7 @@ const eventItemFragment = graphql`
 function EventItem({eventQueryRef}) {
 	const event = useFragment(eventItemFragment, eventQueryRef);
 	return (
-		<div>
+		<div className="event_item_container">
 			<span>{event.eventType}</span>
 			<span>{event.eventTime}</span>
 		</div>

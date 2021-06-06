@@ -4,8 +4,8 @@ import DatePicker from "react-datepicker";
 import './GSDateSelector.css';
 import "react-datepicker/dist/react-datepicker.css";
 
-function GSDateSelector({selectedValue, onSelect}) {
-  	const [selectedDate, setSelectedDate] = useState(new Date());
+function GSDateSelector({selectedValue, onSelect, placeholder}) {
+  	const [selectedDate, setSelectedDate] = useState(null);
 	return (
 		<div className="gs_date_selector_container">
 			<img className="gs_date_selector_icon" src="/assets/icons/calendar-icon.svg" />
@@ -15,6 +15,7 @@ function GSDateSelector({selectedValue, onSelect}) {
     				setSelectedDate(date);
     				onSelect(date.getTime() / 1000);
     			}} />
+			{selectedDate === null && <span className="gs_date_selector_placeholder"><i>{placeholder}</i></span>}
 		</div>
 	);
 }

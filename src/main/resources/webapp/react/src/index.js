@@ -17,7 +17,7 @@ function App() {
 			<Switch>
 				<Route path="/user/profile" component={Profile} />
 				<Route path="/user/events" component={Events} />
-				<Route path="/" component={() => <Home params={params} />} />
+				<Route path="/" component={Home} />
 			</Switch>
   		</Router>
 	);

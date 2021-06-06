@@ -1,0 +1,8 @@
+.event_item_container {
+	position: relative;
+	background-color: #ede5da;
+    border-radius: 25px;
+    box-shadow: 0 0 2px 0px #a0a0a0bf;
+    padding: 5px 15px;
+    margin-right: 15px;
+}

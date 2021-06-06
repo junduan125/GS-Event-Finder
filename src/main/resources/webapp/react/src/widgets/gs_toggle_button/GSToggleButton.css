@@ -1,11 +1,13 @@
 .gs_toggle_button_container {
     font-size: 18px;
     height: 1.2em;
+    min-width: 140px;
     background-color: #ede5da;
     border-radius: 25px;
     box-shadow: 0 0 2px 0px #a0a0a0bf;
     padding: 5px 15px;
     user-select: none;
+    margin-left: 10px;
 }
 
 .gs_toggle_button_label {

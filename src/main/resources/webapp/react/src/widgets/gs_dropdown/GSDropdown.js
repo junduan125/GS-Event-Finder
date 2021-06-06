@@ -2,8 +2,8 @@ import React from 'react';
 import { useState } from 'react';
 import './GSDropdown.css';
 
-function GSDropdown({selectedValue, onSelect, values}) {
-	const initValue = values.find( elem => elem.value === selectedValue) || {label: " "};
+function GSDropdown({selectedValue, onSelect, values, placeholder}) {
+	const initValue = values.find( elem => elem.value === selectedValue) || null;
 	const [selectedValueItem, setSelectedValueItem] = useState(initValue);
 	const [showSelector, setShowSelector] = useState(false);
 	return (
@@ -11,7 +11,10 @@ function GSDropdown({selectedValue, onSelect, values}) {
 			<div className="gs_dropdown_label_container"
 			  onClick={() => setShowSelector(!showSelector) }>
 				<img className="gs_dropdown_icon" src="/assets/icons/chevron-down-icon.svg" />
-				<span>{selectedValueItem.label}</span>
+				{selectedValueItem === null ?
+					<span className="gs_dropdown_placeholder_text"><i>{placeholder}</i></span> :
+					<span>{selectedValueItem.label}</span>
+				}
 			</div>
 			{showSelector && <div className="gs_dropdown_float_container">{
 				values.map( (value, index) => 
