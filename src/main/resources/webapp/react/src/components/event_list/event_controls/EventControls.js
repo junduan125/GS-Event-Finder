@@ -1,10 +1,10 @@
 import React from 'react';
 import { useState } from 'react';
-import NewEventForm from './NewEventForm';
-import GSToggleButton from '../../widgets/gs_toggle_button/GSToggleButton';
-import GSDropdown from '../../widgets/gs_dropdown/GSDropdown';
-import GSDateSelector from '../../widgets/gs_date_selector/GSDateSelector';
-import GSButton from '../../widgets/gs_button/GSButton';
+import NewEventForm from '../new_event_form/NewEventForm';
+import GSToggleButton from '../../../widgets/gs_toggle_button/GSToggleButton';
+import GSDropdown from '../../../widgets/gs_dropdown/GSDropdown';
+import GSDateSelector from '../../../widgets/gs_date_selector/GSDateSelector';
+import GSButton from '../../../widgets/gs_button/GSButton';
 import './EventControls.css';
 
 const eventTypes = [

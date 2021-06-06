@@ -8,6 +8,7 @@ type GSEvent implements Node {
 	id: ID!
 	eventTime: Int
 	eventType: Int
+	joinedUsers: [ GSUser! ]!
 }
 
 type GSEventEdgeConnection {

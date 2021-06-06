@@ -1,10 +1,10 @@
 import React from 'react';
 import { useState } from 'react';
 import { graphql, commitMutation } from 'react-relay';
-import RelayEnvironment from '../../RelayEnvironment';
-import GSTextInput from '../../widgets/gs_text_input/GSTextInput';
-import GSDropdown from '../../widgets/gs_dropdown/GSDropdown';
-import GSDateSelector from '../../widgets/gs_date_selector/GSDateSelector';
+import RelayEnvironment from '../../../RelayEnvironment';
+import GSTextInput from '../../../widgets/gs_text_input/GSTextInput';
+import GSDropdown from '../../../widgets/gs_dropdown/GSDropdown';
+import GSDateSelector from '../../../widgets/gs_date_selector/GSDateSelector';
 import './NewEventForm.css';
 
 const createEventMutation = graphql`

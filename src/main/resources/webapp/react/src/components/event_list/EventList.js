@@ -3,8 +3,8 @@ import { useState } from 'react';
 import { graphql } from 'react-relay';
 import { loadQuery, usePreloadedQuery, usePaginationFragment } from 'react-relay/hooks';
 import RelayEnvironment from '../../RelayEnvironment';
-import EventItem from './EventItem';
-import EventControls from './EventControls';
+import EventItem from './event_item/EventItem';
+import EventControls from './event_controls/EventControls';
 import './EventList.css';
 
 const eventQuery = graphql`
