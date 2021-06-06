@@ -1,7 +1,7 @@
 package org.gsef.eventfinder.graphql.query.model;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.gsef.eventfinder.jpa.model.GSUser;
@@ -28,6 +28,6 @@ public class GSEvent implements Node {
 	}
 	
 	public List<GSUser> getJoinedUsers() {
-		return new ArrayList<>();
+		return gsEvent.getEventUsers().stream().map( eventUser -> eventUser.getUser()).collect(Collectors.toList());
 	}
 }

@@ -12,14 +12,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.apache.tomcat.util.codec.binary.Base64;
-import org.gsef.eventfinder.graphql.query.model.Node;
-
 @Entity
 public class GSEvent {
 	
 	public enum GSEventType {UNKNOWN, SOCIAL, MINING, MOB_HUNTING };
-	public enum GSEventStatus { UNKNOWN, OPEN, CLOSED, DRAFT, FULL };
+	public enum GSEventStatus { UNKNOWN, OPEN, CLOSED, DRAFT };
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -28,6 +25,8 @@ public class GSEvent {
 	private int status;
 	@Column
 	private int eventType;
+	@Column
+	private boolean isFull;
 	@Column
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date eventTime;
@@ -76,6 +75,18 @@ public class GSEvent {
 	
 	public Integer getEventTimeSeconds() {
 		return (int)(eventTime.getTime() / 1000);
+	}
+
+	public boolean isFull() {
+		return isFull;
+	}
+
+	public void setFull(boolean isFull) {
+		this.isFull = isFull;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
 	}
 
 	public List<GSEventUser> getEventUsers() {

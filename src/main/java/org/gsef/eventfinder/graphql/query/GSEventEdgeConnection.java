@@ -18,8 +18,10 @@ public class GSEventEdgeConnection {
 	public GSEventEdgeConnection(Page<GSEvent> gsEvents) {
 		ConnectionCursor pageCursor = new DefaultConnectionCursor(Integer.toString(gsEvents.getNumber()));
 		pageInfo = new DefaultPageInfo(pageCursor, pageCursor, gsEvents.hasPrevious(), gsEvents.hasNext());
-		edges = gsEvents.stream().map(gsEvent -> GSEventEdge.create(pageCursor, gsEvent))
-				.collect(Collectors.toList());
+		edges = gsEvents.stream().map(gsEvent -> {
+			gsEvent.getEventUsers().size();
+			return GSEventEdge.create(pageCursor, gsEvent);
+			}).collect(Collectors.toList());
 	}
 
 	public List<GSEventEdge> getEdges() {

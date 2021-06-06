@@ -5,14 +5,11 @@ import java.util.List;
 
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.gsef.eventfinder.graphql.query.model.Node;
-import org.gsef.eventfinder.jpa.model.GSEvent;
-import org.gsef.eventfinder.jpa.model.GSEvent.GSEventStatus;
 import org.gsef.eventfinder.jpa.model.GSUser;
 import org.gsef.eventfinder.jpa.model.UserCharacter;
 import org.gsef.eventfinder.service.EventService;
 import org.gsef.eventfinder.service.UserProfileService;
 import org.gsef.eventfinder.service.UserService;
-import org.springframework.data.domain.Page;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -50,7 +47,6 @@ public class GSProfile implements Node {
 	
 	public GSEventEdgeConnection getEvents(Integer first, Integer after) {
 		System.out.println("first " + first + " after " + after);
-		Page<GSEvent> events = eventService.listEvents(first, after, new ArrayList<>(), GSEventStatus.OPEN, null);
-		return new GSEventEdgeConnection(events);
+		return eventService.listEvents(first, after, new ArrayList<>(), null, null, true);
 	}
 }
