@@ -1,0 +1,54 @@
+
+.character_list_item {
+	position: relative;
+	width: 70px;
+    height: 90px;
+    border-radius: 4px;
+    margin: 5px;
+}
+
+.character_list_item_gold {
+    background-color: #98662c;
+}
+
+.character_list_item_purple {
+	background-color: #8567a3;
+}
+
+.character_list_item > img {
+	width: 70px;
+    height: 70px;
+    border-radius: 4px;
+    box-shadow: 1px 1px 5px 1px #404040bf;
+}
+
+.character_list_item_selected {
+	box-shadow: 0 -5px 0 #bffe40;
+}
+
+.character_list_item_unselected:hover {
+	box-shadow: 0 0 10px #69e0ff;
+}
+
+.character_list_item_level_indicator {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	height: 20px;
+	width: 100%;
+	background-color: #e9e5dc;
+    border-radius: 0 0 4px 4px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.character_list_item_locked_overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 70px;
+    height: 70px;
+    background-color: rgba(0,0,0,0.5);
+    border-radius: 4px;
+    z-index: 1;
+}

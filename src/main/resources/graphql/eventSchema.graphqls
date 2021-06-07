@@ -23,6 +23,6 @@ type GSEventEdge {
 }
 
 type GSEventUser {
-	characterType: Int
+	userCharacter: UserCharacter
 	user: GSUser!
 }

@@ -15,9 +15,11 @@ import org.gsef.eventfinder.jpa.model.GSEvent.GSEventStatus;
 import org.gsef.eventfinder.jpa.model.GSEvent.GSEventType;
 import org.gsef.eventfinder.jpa.model.GSEventUser;
 import org.gsef.eventfinder.jpa.model.GSUser;
+import org.gsef.eventfinder.jpa.model.UserCharacter;
 import org.gsef.eventfinder.jpa.model.UserCharacter.CharacterType;
 import org.gsef.eventfinder.jpa.repo.GSEventRepo;
 import org.gsef.eventfinder.jpa.repo.GSEventUserRepo;
+import org.gsef.eventfinder.jpa.repo.GSUserCharacterRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -34,9 +36,10 @@ public class EventService {
 
 	@Autowired
 	GSEventRepo eventRepo;
-
 	@Autowired
 	GSEventUserRepo gsEventUserRepo;
+	@Autowired
+	GSUserCharacterRepo gsUserCharacterRepo;
 
 	public GSEvent createEvent(Date eventTime, GSEventType eventType, Integer minWorldLevel) {
 		return eventRepo.save(new GSEvent(eventTime, eventType, GSEventStatus.OPEN, minWorldLevel));
@@ -47,9 +50,9 @@ public class EventService {
 		GSEvent event = eventRepo.findById(id).get();
 		if (event.getEventUsers().size() >= MAX_USER_PER_EVENT)
 			throw new UserExceedEventMaximumException(id, event.getEventUsers().size(), MAX_USER_PER_EVENT);
-		if (event.getEventUsers() == null)
-			event.setEventUsers(new ArrayList<>());
-		event.getEventUsers().add(gsEventUserRepo.save(new GSEventUser(event, user, characterType)));
+		if (event.getEventUsers() == null) event.setEventUsers(new ArrayList<>());
+		UserCharacter userCharacter = gsUserCharacterRepo.findByUserAndCharacterType(user, characterType.ordinal());
+		event.getEventUsers().add(gsEventUserRepo.save(new GSEventUser(event, user, userCharacter)));
 		if (event.getEventUsers().size() == MAX_USER_PER_EVENT)
 			event.setFull(true);
 		return eventRepo.save(event);

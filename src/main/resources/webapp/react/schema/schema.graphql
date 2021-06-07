@@ -63,7 +63,7 @@ type GSEvent implements Node {
 }
 
 type GSEventUser {
-	characterType: Int
+	userCharacter: UserCharacter
 	user: GSUser!
 }
 
