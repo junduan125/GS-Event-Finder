@@ -46,9 +46,11 @@ function EventList() {
 	return (
 		<div className="event_list_container">
 			<EventControls />
-			{events.map( (event, index) => (
-				<EventItem key={index} eventQueryRef={event.node} />
-			))}
+			<div className="event_list_item_container">
+				{events.map( (event, index) => (
+					<EventItem key={index} eventQueryRef={event.node} />
+				))}
+			</div>
 		</div>
 	);
 }

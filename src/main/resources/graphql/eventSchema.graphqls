@@ -1,14 +1,15 @@
 extend type Mutation {
-	createEvent(eventTime: Int!, eventType: Int!): GSEvent
-	joinEvent(id: ID): GSEvent
-	leaveEvent(id: ID): Boolean
+	createEvent(eventTime: Int!, eventType: Int!, characterType: Int, minWorldLevel: Int): GSEvent
+	joinEvent(id: ID!, characterType: Int): GSEvent
+	leaveEvent(id: ID!): Boolean
 }
 
 type GSEvent implements Node {
 	id: ID!
 	eventTime: Int
 	eventType: Int
-	joinedUsers: [ GSUser! ]!
+	minWorldLevel: Int
+	joinedUsers: [ GSEventUser! ]!
 }
 
 type GSEventEdgeConnection {
@@ -19,4 +20,9 @@ type GSEventEdgeConnection {
 type GSEventEdge {
 	cursor: String!
 	node: GSEvent
+}
+
+type GSEventUser {
+	characterType: Int
+	user: GSUser!
 }

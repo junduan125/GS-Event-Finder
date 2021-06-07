@@ -13,6 +13,8 @@ type GSProfile implements Node {
 
 type GSUser {
 	username: String!
+	uuid: String!
+	worldLevel: Int
 }
 
 type UserCharacter {

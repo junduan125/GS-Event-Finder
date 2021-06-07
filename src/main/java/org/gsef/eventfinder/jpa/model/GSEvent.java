@@ -28,6 +28,8 @@ public class GSEvent {
 	@Column
 	private boolean isFull;
 	@Column
+	private int minWorldLevel;
+	@Column
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date eventTime;
 	@OneToMany
@@ -35,14 +37,15 @@ public class GSEvent {
 	
 	public GSEvent() {}
 	
-	public GSEvent(Date eventTime, GSEventType eventType, GSEventStatus status) {
+	public GSEvent(Date eventTime, GSEventType eventType, GSEventStatus status, Integer minWorldLevel) {
 		this.eventTime = eventTime;
 		this.eventType = eventType.ordinal();
 		this.status = status.ordinal();
+		this.minWorldLevel = minWorldLevel == null ? 0 : minWorldLevel;
 	}
 	
-	public GSEvent(Long eventTime, GSEventType eventType) {
-		this(new Date(eventTime), eventType, GSEventStatus.OPEN);
+	public GSEvent(Long eventTime, GSEventType eventType, Integer minWorldLevel) {
+		this(new Date(eventTime), eventType, GSEventStatus.OPEN, minWorldLevel);
 	}
 	
 	public Long getId() {
@@ -87,6 +90,14 @@ public class GSEvent {
 
 	public void setStatus(int status) {
 		this.status = status;
+	}
+
+	public int getMinWorldLevel() {
+		return minWorldLevel;
+	}
+
+	public void setMinWorldLevel(int minWorldLevel) {
+		this.minWorldLevel = minWorldLevel;
 	}
 
 	public List<GSEventUser> getEventUsers() {

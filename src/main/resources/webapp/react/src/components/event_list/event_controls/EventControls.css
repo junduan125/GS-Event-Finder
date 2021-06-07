@@ -8,16 +8,9 @@
 	display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
+    margin: 15px 5px;
 }
 
-.event_controls_button {
-	display: block;
-    border: 1px solid #3b4354;
-    background-color: #6b9a48;
-    color: #fff;
-    border-radius: 4px;
-    line-height: 38px;
-    text-align: center;
-    font-size: 18px;
-    outline: none;
+.event_new_button {
+    background-color: #30902a;
 }

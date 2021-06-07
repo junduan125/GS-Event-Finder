@@ -26,7 +26,7 @@ const characterQueryRef = loadQuery(
   characterEditorQuery,{}
 );
 
-async function fetchCharacterList() {
+export async function fetchCharacterList() {
 	const data = await fetch('/json/characters.json', {
 		headers: {
 			'Content-Type': 'application/json',

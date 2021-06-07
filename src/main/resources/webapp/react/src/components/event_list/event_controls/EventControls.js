@@ -42,12 +42,14 @@ function EventControls() {
 	    		<GSButton
 	    			label="Search"
 	    			onClick={() => {}} />
+	    		<GSButton
+	    			className="event_new_button"
+	    			label="New"
+	    			onClick={() => setShowCreateEvent(!showCreateEvent)} />
 			</div>
-			<div>
-				<button className="event_controls_button"
-					onClick={() => setShowCreateEvent(!showCreateEvent)}>New</button>
-			</div>
-			{showCreateEvent && <NewEventForm />}
+			<NewEventForm
+				showModal={showCreateEvent}
+				onHide={() => setShowCreateEvent(false)} />
 		</div>
 	);
 }

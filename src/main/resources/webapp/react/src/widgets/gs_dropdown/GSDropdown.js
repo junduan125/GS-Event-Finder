@@ -2,13 +2,13 @@ import React from 'react';
 import { useState } from 'react';
 import './GSDropdown.css';
 
-function GSDropdown({selectedValue, onSelect, values, placeholder}) {
+function GSDropdown({selectedValue, onSelect, values, placeholder, width}) {
 	const initValue = values.find( elem => elem.value === selectedValue) || null;
 	const [selectedValueItem, setSelectedValueItem] = useState(initValue);
 	const [showSelector, setShowSelector] = useState(false);
 	return (
 		<div className="gs_dropdown_container">
-			<div className="gs_dropdown_label_container"
+			<div className="gs_dropdown_label_container" style={{ width, minWidth: width }}
 			  onClick={() => setShowSelector(!showSelector) }>
 				<img className="gs_dropdown_icon" src="/assets/icons/chevron-down-icon.svg" />
 				{selectedValueItem === null ?

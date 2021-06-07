@@ -12,9 +12,9 @@ type Mutation {
 	editUserCharacter(characterType: Int, level: Int): UserCharacter
 	removeUserCharacter(characterType: Int): [UserCharacter]
 	
-	createEvent(eventTime: Int!, eventType: Int!): GSEvent
-	joinEvent(id: ID): GSEvent
-	leaveEvent(id: ID): Boolean
+	createEvent(eventTime: Int!, eventType: Int!, characterType: Int, minWorldLevel: Int): GSEvent
+	joinEvent(id: ID!, characterType: Int): GSEvent
+	leaveEvent(id: ID!): Boolean
 	
 	rateUser(id: ID, overall: Int, griefed: Boolean, flaked: Boolean): Boolean
 }
@@ -45,6 +45,8 @@ type GSEventEdge {
 
 type GSUser {
 	username: String!
+	uuid: String!
+	worldLevel: Int
 }
 
 type UserCharacter {
@@ -56,7 +58,13 @@ type GSEvent implements Node {
   	id: ID!
 	eventTime: Int
 	eventType: Int
-	joinedUsers: [ GSUser! ]!
+	minWorldLevel: Int
+	joinedUsers: [ GSEventUser! ]!
+}
+
+type GSEventUser {
+	characterType: Int
+	user: GSUser!
 }
 
 input SortOptions {

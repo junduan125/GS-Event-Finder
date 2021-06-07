@@ -1,6 +1,7 @@
 package org.gsef.eventfinder.jpa.model;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -8,12 +9,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import org.gsef.eventfinder.jpa.model.UserCharacter.CharacterType;
+
 @Entity
 public class GSEventUser {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
+	@Column
+	private long characterType;
 	@OneToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
 	private GSEvent event;
 	@OneToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
@@ -21,9 +26,10 @@ public class GSEventUser {
 	
 	public GSEventUser() {}
 	
-	public GSEventUser(GSEvent event, GSUser user) {
+	public GSEventUser(GSEvent event, GSUser user, CharacterType characterType) {
 		this.event = event;
 		this.user = user;
+		this.characterType = characterType.ordinal();
 	}
 	
 	public Long getId() {
@@ -46,5 +52,13 @@ public class GSEventUser {
 	public void setUser(GSUser user) {
 		this.user = user;
 	}
-	
+
+	public long getCharacterType() {
+		return characterType;
+	}
+
+	public GSEventUser setCharacterType(long characterType) {
+		this.characterType = characterType;
+		return this;
+	}
 }

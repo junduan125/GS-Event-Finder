@@ -1,10 +1,9 @@
 package org.gsef.eventfinder.graphql.query.model;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.apache.tomcat.util.codec.binary.Base64;
-import org.gsef.eventfinder.jpa.model.GSUser;
+import org.gsef.eventfinder.jpa.model.GSEventUser;
 
 public class GSEvent implements Node {
 
@@ -27,7 +26,11 @@ public class GSEvent implements Node {
 		return gsEvent.getEventTimeSeconds();
 	}
 	
-	public List<GSUser> getJoinedUsers() {
-		return gsEvent.getEventUsers().stream().map( eventUser -> eventUser.getUser()).collect(Collectors.toList());
+	public List<GSEventUser> getJoinedUsers() {
+		return gsEvent.getEventUsers();
+	}
+	
+	public Integer getMinWorldLevel() {
+		return gsEvent.getMinWorldLevel();
 	}
 }

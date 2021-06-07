@@ -39,7 +39,7 @@ function UserNavControls({userProfile}) {
 					</Link>
 					{ hoveredButton === SELECTED_LINKS.PROFILE && 
 						<div className="user_nav_controls_prompt_overlay">
-							Profile
+							Characters
 						</div>
 					}
 				</div>
