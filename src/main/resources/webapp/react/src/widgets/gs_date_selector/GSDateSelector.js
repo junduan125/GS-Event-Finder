@@ -10,6 +10,8 @@ function GSDateSelector({selectedValue, onSelect, placeholder}) {
 		<div className="gs_date_selector_container">
 			<img className="gs_date_selector_icon" src="/assets/icons/calendar-icon.svg" />
     		<DatePicker
+    			showTimeSelect
+      			dateFormat="MMMM d, yyyy h:mm aa"
     			selected={selectedDate}
     			onChange={(date) => {
     				setSelectedDate(date);

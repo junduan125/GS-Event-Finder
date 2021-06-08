@@ -23,9 +23,6 @@ function EventControls() {
 	return (
 		<div className="event_controls_container">
 			<div className="event_controls_filters">
-				<GSToggleButton label="Show Full"
-					selectedValue={filterShowFull}
-					onSelect={setFilterShowFull} />
 				<GSDropdown
 					placeholder="Event Type"
 					selectedValue={filterEventType}

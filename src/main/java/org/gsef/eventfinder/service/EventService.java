@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+import org.gsef.eventfinder.exception.UserAlreadyJoinedException;
 import org.gsef.eventfinder.exception.UserExceedEventMaximumException;
 import org.gsef.eventfinder.graphql.query.GSEventEdgeConnection;
 import org.gsef.eventfinder.graphql.query.model.SortOption;
@@ -45,11 +46,13 @@ public class EventService {
 	}
 
 	@Transactional
-	public GSEvent joinEvent(Long id, GSUser user, Long characterType) throws UserExceedEventMaximumException {
+	public GSEvent joinEvent(Long id, GSUser user, Long characterType) throws UserExceedEventMaximumException, UserAlreadyJoinedException {
 		GSEvent event = eventRepo.findById(id).get();
 		if (event.getEventUsers().size() >= MAX_USER_PER_EVENT)
 			throw new UserExceedEventMaximumException(id, event.getEventUsers().size(), MAX_USER_PER_EVENT);
 		if (event.getEventUsers() == null) event.setEventUsers(new ArrayList<>());
+		if (event.getEventUsers().stream().anyMatch(eventUser -> eventUser.getId() == user.getId()))
+			throw new UserAlreadyJoinedException(user.getId(), event.getId());
 		UserCharacter userCharacter = gsUserCharacterRepo.findByUserAndCharacterId(user, characterType);
 		event.getEventUsers().add(gsEventUserRepo.save(new GSEventUser(event, user, userCharacter)));
 		if (event.getEventUsers().size() == MAX_USER_PER_EVENT)

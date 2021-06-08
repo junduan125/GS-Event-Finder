@@ -57,7 +57,10 @@ function NewEventForm({showModal, onHide}) {
 	return (
 		<div>
 			{showModal && <div className="new_event_form_modal"
-								onClick={onHide}>
+								onClick={() => {
+									setNewEvent(emptyEvent);
+									onHide();
+								}}>
 			</div>}
 			{showModal && <div className="new_event_form_container">
 				<div>
@@ -67,11 +70,13 @@ function NewEventForm({showModal, onHide}) {
 							selectedValue={newEvent.eventType}
 				    		onSelect={value => setNewEvent({ ...newEvent, eventType: value})}
 							values={eventTypes} />
+			    	</div>
+					<div className="new_event_form_container_fields">
 						<GSDateSelector
 							placeholder="Time"
 							selectedValue={newEvent.eventTime}
 				    		onSelect={value => setNewEvent({ ...newEvent, eventTime: value})} />
-			    	</div>
+					</div>
 			    	<div className="new_event_form_container_fields">
 			    		<GSDropdown
 							placeholder="Character"
