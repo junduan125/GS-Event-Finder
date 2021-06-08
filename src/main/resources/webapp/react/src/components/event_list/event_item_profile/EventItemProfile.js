@@ -1,33 +1,21 @@
 import React from 'react';
-import { graphql } from 'react-relay';
-import { useFragment } from 'react-relay/hooks';
 import CharacterListItem from '../../character_list_item/CharacterListItem';
-import './EventItemProfile.js';
+import './EventItemProfile.css';
 
-const eventItemProfileFragment = graphql`
-	fragment EventItemProfile_event on GSEventUser
-	@relay(plural: true) {
-		userCharacter {
-			level
-			characterID
-			character {
-				name
-				stars
-				elementType
-			}
-		}
-		user {
-			username
-			uuid
-			worldLevel
-		}
-	}
-`
-
-function EventItemProfile({eventItemProfileQueryRef}) {
-	const eventItemProfile = useFragment(eventItemProfileFragment, eventItemProfileQueryRef);
+function EventItemProfile({eventItemProfile}) {
+	const userProfile = eventItemProfile.user;
+	const userCharacter = eventItemProfile.userCharacter;
+	const userCharacterObject = {...userCharacter, hasCharacter: true}
+	console.log('eventItemProfile', eventItemProfile);
 	return (
-		<div>
+		<div className="event_item_profile_container">
+			<div className="event_item_profile_character">
+				<CharacterListItem character={userCharacterObject} />
+			</div>
+			<div className="event_item_profile_user">
+				<div><strong>{userProfile.uuid}</strong></div>
+				<div>WL <i>{userProfile.worldLevel}</i></div>
+			</div>
 		</div>
 	);
 }

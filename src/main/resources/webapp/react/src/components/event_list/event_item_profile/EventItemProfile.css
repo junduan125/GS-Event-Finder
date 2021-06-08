@@ -1,0 +1,19 @@
+.event_item_profile_container {
+	position: relative;
+	display: flex;
+}
+
+.event_item_profile_character {
+	height: 100px;
+}
+
+.event_item_profile_user {
+	height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.event_item_profile_user > div {
+	margin: 5px;
+}

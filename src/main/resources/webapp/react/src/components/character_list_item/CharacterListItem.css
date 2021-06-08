@@ -38,6 +38,7 @@
 	width: 100%;
 	background-color: #e9e5dc;
     border-radius: 0 0 4px 4px;
+    box-shadow: 1px 1px 5px 1px #404040bf;
     text-align: center;
     font-size: 14px;
 }
