@@ -14,8 +14,13 @@ const characterEditorQuery = graphql`
 				username
 			}
 			characters {
-				characterID
 				level
+				characterID
+				character {
+					name
+					stars
+					elementType
+				}
 			}
 		}
 	}
@@ -40,7 +45,7 @@ export async function fetchCharacterList() {
 function CharacterEditor() {
 	const userProfile = usePreloadedQuery(characterEditorQuery, characterQueryRef);
 	const userChars = (userProfile.profile.characters || [])
-						.reduce( (map, char) => map.set(char.characterTypeID, char), new Map());
+						.reduce( (map, char) => map.set(char.characterID, char), new Map());
 
 	const [characters, setCharacters] = useState([]);
 	const [selectedCharacter, setSelectedCharacter] = useState(-1);
@@ -65,7 +70,8 @@ function CharacterEditor() {
 					selectedCharacter={selectedCharacter}
 					userCharacters={userCharacters}
 					onSelect={setSelectedCharacter} />
-				{selectedCharacter >= 0 && <CharacterStats
+				{selectedCharacter >= 0 &&
+				<CharacterStats
 					characters={characters}
 					userCharacters={userCharacters}
 					updateUserCharacters={setUserCharacters}

@@ -22,3 +22,10 @@ input SortOptions {
 	field: String!
 	order: String!
 }
+
+type GSCharacter {
+	id: Int!
+	name: String!
+	stars: Int!
+	elementType: String
+}

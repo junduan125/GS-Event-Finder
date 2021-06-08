@@ -8,8 +8,13 @@ const eventItemProfileFragment = graphql`
 	fragment EventItemProfile_event on GSEventUser
 	@relay(plural: true) {
 		userCharacter {
-			characterID
 			level
+			characterID
+			character {
+				name
+				stars
+				elementType
+			}
 		}
 		user {
 			username
@@ -21,10 +26,8 @@ const eventItemProfileFragment = graphql`
 
 function EventItemProfile({eventItemProfileQueryRef}) {
 	const eventItemProfile = useFragment(eventItemProfileFragment, eventItemProfileQueryRef);
-	const eventItemProfileUser = eventItemProfile.user;
 	return (
 		<div>
-			{eventItemProfile.characterType}
 		</div>
 	);
 }

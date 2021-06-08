@@ -11,6 +11,11 @@ const addCharacterMutation = graphql`
 	mutation CharacterStatsAddMutation($characterType: Int!, $level: Int) {
 		addUserCharacter(characterType: $characterType, level: $level) {
 			characterID
+			character {
+				name
+				stars
+				elementType
+			}
 			level
 		}
 	}
@@ -20,6 +25,11 @@ const removeCharacterMutation = graphql`
 	mutation CharacterStatsRemoveMutation($characterType: Int!) {
 		removeUserCharacter(characterType: $characterType) {
 			characterID
+			character {
+				name
+				stars
+				elementType
+			}
 			level
 		}
 	}
@@ -29,6 +39,11 @@ const editCharacterMutation = graphql`
 	mutation CharacterStatsEditMutation($characterType: Int!, $level: Int) {
 		editUserCharacter(characterType: $characterType, level: $level) {
 			characterID
+			character {
+				name
+				stars
+				elementType
+			}
 			level
 		}
 	}
@@ -45,7 +60,7 @@ function CharacterStats({characters, userCharacters, selectedCharacter, updateUs
 			variables: {characterType: selectedCharacter, level},
 			onCompleted: response => {
 				const userChars = (response.addUserCharacter || [])
-						.reduce( (map, char) => map.set(char.characterTypeID, char), new Map());
+						.reduce( (map, char) => map.set(char.characterID, char), new Map());
 				updateUserCharacters(userChars);
 			}
 		});
@@ -57,7 +72,7 @@ function CharacterStats({characters, userCharacters, selectedCharacter, updateUs
 			variables: {characterType: selectedCharacter},
 			onCompleted: response => {
 				const userChars = (response.removeUserCharacter || [])
-						.reduce( (map, char) => map.set(char.characterTypeID, char), new Map());
+						.reduce( (map, char) => map.set(char.characterID, char), new Map());
 				updateUserCharacters(userChars);
 			}
 		});
@@ -70,7 +85,7 @@ function CharacterStats({characters, userCharacters, selectedCharacter, updateUs
 			variables: {characterType: selectedCharacter, level},
 			onCompleted: response => {
 				const character = response.editUserCharacter;
-				userCharacters.set(character.characterTypeID, character);
+				userCharacters.set(character.characterID, character);
 				updateUserCharacters(new Map(userCharacters));
 				setLoading(false);
 			}

@@ -19,5 +19,6 @@ type GSUser {
 
 type UserCharacter {
 	characterID: Int
+	character: GSCharacter
 	level: Int
 }

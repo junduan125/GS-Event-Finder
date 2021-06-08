@@ -51,7 +51,15 @@ type GSUser {
 
 type UserCharacter {
 	characterID: Int
+	character: GSCharacter
 	level: Int
+}
+
+type GSCharacter {
+	id: Int!
+	name: String!
+	stars: Int!
+	elementType: String
 }
 
 type GSEvent implements Node {

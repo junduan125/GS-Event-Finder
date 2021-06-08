@@ -6,13 +6,21 @@ function CharacterList({characters, selectedCharacter, userCharacters, onSelect}
 	return (
 		<div className="character_list_container">
 			{characters.map( character => {
-				const userCharacter = userCharacters.get(character.id);
-				const userCharacterObject = {...userCharacter, ...character };
-				const hasCharacter = userCharacters.has(character.id);
+				let userCharacterObject;
+				if (userCharacters.has(character.id)) {
+					const userCharacter = userCharacters.get(character.id);
+					userCharacterObject = {...userCharacter, hasCharacter: true};
+				} else {
+					userCharacterObject = {
+						level: 0,
+						hasCharacter: false,
+						characterID: character.id,
+						character
+					};
+				}
 				return (
 					<CharacterListItem
 						key={character.id}
-						hasCharacter={hasCharacter}
 						isSelected={selectedCharacter === character.id}
 						character={userCharacterObject}
 						onSelect={onSelect} />
