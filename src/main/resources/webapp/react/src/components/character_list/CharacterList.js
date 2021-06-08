@@ -11,6 +11,7 @@ function CharacterList({characters, selectedCharacter, userCharacters, onSelect}
 				const hasCharacter = userCharacters.has(character.id);
 				return (
 					<CharacterListItem
+						key={character.id}
 						hasCharacter={hasCharacter}
 						isSelected={selectedCharacter === character.id}
 						character={userCharacterObject}

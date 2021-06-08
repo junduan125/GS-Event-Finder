@@ -6,7 +6,6 @@ import org.gsef.eventfinder.exception.UserExceedEventMaximumException;
 import org.gsef.eventfinder.graphql.query.model.GSEvent;
 import org.gsef.eventfinder.jpa.model.GSEvent.GSEventType;
 import org.gsef.eventfinder.jpa.model.GSUser;
-import org.gsef.eventfinder.jpa.model.UserCharacter.CharacterType;
 import org.gsef.eventfinder.service.EventService;
 import org.gsef.eventfinder.service.UserService;
 import org.gsef.eventfinder.utils.IdDecoder;
@@ -20,7 +19,6 @@ public class EventMutation implements GraphQLMutationResolver {
 	
 	@Autowired
 	private UserService userService;
-	
 	@Autowired
 	private EventService eventService;
 
@@ -31,7 +29,7 @@ public class EventMutation implements GraphQLMutationResolver {
 
 	public GSEvent joinEvent(Long id, Integer characterType) throws UserExceedEventMaximumException {
 		GSUser guser = userService.findByUserName(Mutation.getAuthenticatedUser().getUsername());
-		return new GSEvent(eventService.joinEvent(id, guser, CharacterType.values()[characterType]));
+		return new GSEvent(eventService.joinEvent(id, guser, characterType.longValue()));
 	}
 	
 	public Boolean leaveEvent(Long id) {

@@ -50,7 +50,7 @@ type GSUser {
 }
 
 type UserCharacter {
-	characterTypeID: Int
+	characterID: Int
 	level: Int
 }
 

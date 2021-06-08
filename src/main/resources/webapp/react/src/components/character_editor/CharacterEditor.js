@@ -14,7 +14,7 @@ const characterEditorQuery = graphql`
 				username
 			}
 			characters {
-				characterTypeID
+				characterID
 				level
 			}
 		}
@@ -27,10 +27,10 @@ const characterQueryRef = loadQuery(
 );
 
 export async function fetchCharacterList() {
-	const data = await fetch('/json/characters.json', {
+	const data = await fetch('/json/characters', {
 		headers: {
 			'Content-Type': 'application/json',
-        	'Accept': 'application/json'
+      'Accept': 'application/json'
 		}
 	}).then(response => response.json());
 
@@ -46,15 +46,11 @@ function CharacterEditor() {
 	const [selectedCharacter, setSelectedCharacter] = useState(-1);
 	const [userCharacters, setUserCharacters] = useState(userChars);
 
-	const forceUseCharacter = (data) => {
-		setUserCharacters(data);
-	}
-
 
 	useEffect(()=> {
 		fetchCharacterList()
 			.then(data => {
-				setCharacters(data.characters);
+				setCharacters(data);
 			})
 	}, [setCharacters]);
 
@@ -72,7 +68,7 @@ function CharacterEditor() {
 				{selectedCharacter >= 0 && <CharacterStats
 					characters={characters}
 					userCharacters={userCharacters}
-					updateUserCharacters={forceUseCharacter}
+					updateUserCharacters={setUserCharacters}
 					selectedCharacter={selectedCharacter} />}
 			</div>
 		</div>

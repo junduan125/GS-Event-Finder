@@ -8,11 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,12 +19,6 @@ public class AccountController {
 	
 	@Autowired
 	UserService userService;
-
-	//@GetMapping("/login")
-	public String getAccountHomeView(@RequestParam(value = "error", required = false) String error, Model model) {
-		if (error != null) model.addAttribute("errorMessage", "Invalid Username/Password");
-		return "LoginPage";
-	}
 	
 	@ResponseBody
 	@GetMapping(value = "/profile", produces = MediaType.APPLICATION_JSON_VALUE)

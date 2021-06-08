@@ -8,7 +8,7 @@ const eventItemProfileFragment = graphql`
 	fragment EventItemProfile_event on GSEventUser
 	@relay(plural: true) {
 		userCharacter {
-			characterTypeID
+			characterID
 			level
 		}
 		user {

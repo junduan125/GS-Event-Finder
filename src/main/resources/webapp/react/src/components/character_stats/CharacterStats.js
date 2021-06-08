@@ -10,7 +10,7 @@ const profilePicSrc = '/assets/characters/';
 const addCharacterMutation = graphql`
 	mutation CharacterStatsAddMutation($characterType: Int!, $level: Int) {
 		addUserCharacter(characterType: $characterType, level: $level) {
-			characterTypeID
+			characterID
 			level
 		}
 	}
@@ -19,7 +19,7 @@ const addCharacterMutation = graphql`
 const removeCharacterMutation = graphql`
 	mutation CharacterStatsRemoveMutation($characterType: Int!) {
 		removeUserCharacter(characterType: $characterType) {
-			characterTypeID
+			characterID
 			level
 		}
 	}
@@ -28,7 +28,7 @@ const removeCharacterMutation = graphql`
 const editCharacterMutation = graphql`
 	mutation CharacterStatsEditMutation($characterType: Int!, $level: Int) {
 		editUserCharacter(characterType: $characterType, level: $level) {
-			characterTypeID
+			characterID
 			level
 		}
 	}
